@@ -1,0 +1,18 @@
+.floo
+.flooignore
+*.xml.gen
+*~
+
+# Dependent library
+lib/
+
+# Cache
+.refcache
+tracker.log
+
+# Do not upload the generated file
+lib
+draft-*-alto-bgp-ls.xml
+draft-*-alto-bgp-ls.txt
+draft-*-alto-bgp-ls.html
+draft-*-alto-bgp-ls.pdf
