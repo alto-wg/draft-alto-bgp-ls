@@ -1,5 +1,7 @@
 # Considerations of Providing ALTO Services using BGP-LS
 
+[![Travis branch](https://img.shields.io/travis/alto-wg/draft-alto-bgp-ls/master.svg)](https://travis-ci.org/alto-wg/draft-alto-bgp-ls)
+
 This is the working area for the individual Internet-Draft, "Considerations of Providing ALTO Services using BGP-LS".
 
 * [Editor's Copy](https://alto-wg.github.io/draft-alto-bgp-ls/#go.draft-tbd-alto-bgp-ls.html)
