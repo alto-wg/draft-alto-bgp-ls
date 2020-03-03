@@ -73,16 +73,18 @@ Table of Contents
    2.  Background  . . . . . . . . . . . . . . . . . . . . . . . . .   3
      2.1.  ALTO Inter-domain Deployment Problem  . . . . . . . . . .   3
      2.2.  BGP-LS Background and Benefits  . . . . . . . . . . . . .   3
-   3.  Requirements of Deploying ALTO in the Inter-domain
+   3.  Requirements for Deploying ALTO in the Inter-domain
            Scenario  . . . . . . . . . . . . . . . . . . . . . . . .   3
    4.  ALTO Deployment Considerations using BGP-LS . . . . . . . . .   3
-     4.1.  Provisioning of Topology and Routing Information  . . . .   3
-     4.2.  Provisioning of Performance Metric Information  . . . . .   3
+     4.1.  Provisioning of Topology Information  . . . . . . . . . .   3
+     4.2.  Provisioning of Routing Information . . . . . . . . . . .   3
+     4.3.  Provisioning of Performance Metric Information  . . . . .   3
+     4.4.  Examples of Map Calculation . . . . . . . . . . . . . . .   3
    5.  Test Scenarios  . . . . . . . . . . . . . . . . . . . . . . .   3
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
      6.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
      6.2.  Informative References  . . . . . . . . . . . . . . . . .   4
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
 
 1.  Introduction
 
@@ -104,8 +106,6 @@ Table of Contents
    This document discusses these requirements and the corresponding
    deployment considerations.
 
-   Additionally, this document describes some inter-domain scenarios to
-   test the deployment.
 
 
 
@@ -114,19 +114,32 @@ Contreras, et al.       Expires 4 September 2020                [Page 2]
 Internet-Draft              ALTO using BGP-LS                 March 2020
 
 
+   Additionally, this document describes some inter-domain scenarios to
+   test the deployment.
+
 2.  Background
 
 2.1.  ALTO Inter-domain Deployment Problem
 
 2.2.  BGP-LS Background and Benefits
 
-3.  Requirements of Deploying ALTO in the Inter-domain Scenario
+3.  Requirements for Deploying ALTO in the Inter-domain Scenario
+
+   Req 1: Collect topology information from multiple IGP areas.
+
+   Req 2: Collect routing information for any pairs of endpoints.
+
+   Req 3: Collect performance metrics across routes.
 
 4.  ALTO Deployment Considerations using BGP-LS
 
-4.1.  Provisioning of Topology and Routing Information
+4.1.  Provisioning of Topology Information
 
-4.2.  Provisioning of Performance Metric Information
+4.2.  Provisioning of Routing Information
+
+4.3.  Provisioning of Performance Metric Information
+
+4.4.  Examples of Map Calculation
 
 5.  Test Scenarios
 
@@ -148,6 +161,15 @@ Internet-Draft              ALTO using BGP-LS                 March 2020
    [RFC7752]  Gredler, H., Ed., Medved, J., Previdi, S., Farrel, A., and
               S. Ray, "North-Bound Distribution of Link-State and
               Traffic Engineering (TE) Information Using BGP", RFC 7752,
+
+
+
+
+Contreras, et al.       Expires 4 September 2020                [Page 3]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
               DOI 10.17487/RFC7752, March 2016,
               <https://www.rfc-editor.org/info/rfc7752>.
 
@@ -162,13 +184,6 @@ Internet-Draft              ALTO using BGP-LS                 March 2020
               IGP Traffic Engineering Performance Metric Extensions",
               RFC 8571, DOI 10.17487/RFC8571, March 2019,
               <https://www.rfc-editor.org/info/rfc8571>.
-
-
-
-Contreras, et al.       Expires 4 September 2020                [Page 3]
-
-Internet-Draft              ALTO using BGP-LS                 March 2020
-
 
 6.2.  Informative References
 
@@ -203,6 +218,14 @@ Internet-Draft              ALTO using BGP-LS                 March 2020
 
    [I-D.wang-idr-bgpls-inter-as-topology-ext]
               Wang, A. and H. Chen, "BGP-LS Extension for Inter-AS
+
+
+
+Contreras, et al.       Expires 4 September 2020                [Page 4]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
               Topology Retrieval", Work in Progress, Internet-Draft,
               draft-wang-idr-bgpls-inter-as-topology-ext-02, 13 August
               2018, <http://www.ietf.org/internet-drafts/draft-wang-idr-
@@ -218,14 +241,6 @@ Authors' Addresses
    Luis M. Contreras
    Telefonica
    Ronda de la Comunicacion, s/n
-
-
-
-Contreras, et al.       Expires 4 September 2020                [Page 4]
-
-Internet-Draft              ALTO using BGP-LS                 March 2020
-
-
    28050 Madrid
    Spain
 
@@ -250,21 +265,6 @@ Internet-Draft              ALTO using BGP-LS                 March 2020
    China
 
    Email: kaigao@scu.edu.cn
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

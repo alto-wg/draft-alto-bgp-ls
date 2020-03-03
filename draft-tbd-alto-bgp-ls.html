@@ -943,16 +943,22 @@ interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]<
 </ul>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-requirements-of-deploying-a" class="xref">Requirements of Deploying ALTO in the Inter-domain Scenario</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-requirements-for-deploying-" class="xref">Requirements for Deploying ALTO in the Inter-domain Scenario</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-alto-deployment-considerati" class="xref">ALTO Deployment Considerations using BGP-LS</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty">
 <li class="toc ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-provisioning-of-topology-an" class="xref">Provisioning of Topology and Routing Information</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-provisioning-of-topology-in" class="xref">Provisioning of Topology Information</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-provisioning-of-performance" class="xref">Provisioning of Performance Metric Information</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-provisioning-of-routing-inf" class="xref">Provisioning of Routing Information</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+</li>
+<li class="toc ulEmpty" id="section-toc.1-1.4.2.3">
+                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-provisioning-of-performance" class="xref">Provisioning of Performance Metric Information</a><a href="#section-toc.1-1.4.2.3.1" class="pilcrow">¶</a></p>
+</li>
+<li class="toc ulEmpty" id="section-toc.1-1.4.2.4">
+                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-examples-of-map-calculation" class="xref">Examples of Map Calculation</a><a href="#section-toc.1-1.4.2.4.1" class="pilcrow">¶</a></p>
 </li>
 </ul>
 </li>
@@ -1020,11 +1026,14 @@ deployment.<a href="#section-1-6" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
-<div id="requirements-of-deploying-alto-in-the-inter-domain-scenario">
+<div id="requirements-for-deploying-alto-in-the-inter-domain-scenario">
 <section id="section-3">
-      <h2 id="name-requirements-of-deploying-a">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-requirements-of-deploying-a" class="section-name selfRef">Requirements of Deploying ALTO in the Inter-domain Scenario</a>
-    </h2>
+      <h2 id="name-requirements-for-deploying-">
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-requirements-for-deploying-" class="section-name selfRef">Requirements for Deploying ALTO in the Inter-domain Scenario</a>
+      </h2>
+<p id="section-3-1">Req 1: Collect topology information from multiple IGP areas.<a href="#section-3-1" class="pilcrow">¶</a></p>
+<p id="section-3-2">Req 2: Collect routing information for any pairs of endpoints.<a href="#section-3-2" class="pilcrow">¶</a></p>
+<p id="section-3-3">Req 3: Collect performance metrics across routes.<a href="#section-3-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="alto-deployment-considerations-using-bgp-ls">
@@ -1032,17 +1041,31 @@ deployment.<a href="#section-1-6" class="pilcrow">¶</a></p>
       <h2 id="name-alto-deployment-considerati">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-alto-deployment-considerati" class="section-name selfRef">ALTO Deployment Considerations using BGP-LS</a>
       </h2>
-<div id="provisioning-of-topology-and-routing-information">
+<div id="provisioning-of-topology-information">
 <section id="section-4.1">
-        <h3 id="name-provisioning-of-topology-an">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-provisioning-of-topology-an" class="section-name selfRef">Provisioning of Topology and Routing Information</a>
+        <h3 id="name-provisioning-of-topology-in">
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-provisioning-of-topology-in" class="section-name selfRef">Provisioning of Topology Information</a>
+      </h3>
+</section>
+</div>
+<div id="provisioning-of-routing-information">
+<section id="section-4.2">
+        <h3 id="name-provisioning-of-routing-inf">
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-provisioning-of-routing-inf" class="section-name selfRef">Provisioning of Routing Information</a>
       </h3>
 </section>
 </div>
 <div id="provisioning-of-performance-metric-information">
-<section id="section-4.2">
+<section id="section-4.3">
         <h3 id="name-provisioning-of-performance">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-provisioning-of-performance" class="section-name selfRef">Provisioning of Performance Metric Information</a>
+<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-provisioning-of-performance" class="section-name selfRef">Provisioning of Performance Metric Information</a>
+      </h3>
+</section>
+</div>
+<div id="examples-of-map-calculation">
+<section id="section-4.4">
+        <h3 id="name-examples-of-map-calculation">
+<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-examples-of-map-calculation" class="section-name selfRef">Examples of Map Calculation</a>
       </h3>
 </section>
 </div>
