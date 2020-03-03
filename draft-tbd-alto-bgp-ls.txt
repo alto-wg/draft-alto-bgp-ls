@@ -5,10 +5,10 @@
 ALTO WG                                                    LM. Contreras
 Internet-Draft                                                Telefonica
 Intended status: Standards Track                                J. Zhang
-Expires: 31 August 2020                                Tongji University
+Expires: 4 September 2020                              Tongji University
                                                                   K. Gao
                                                       Sichuan University
-                                                        28 February 2020
+                                                            3 March 2020
 
 
          Considerations of Providing ALTO Services using BGP-LS
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 31 August 2020.
+   This Internet-Draft will expire on 4 September 2020.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Contreras, et al.        Expires 31 August 2020                 [Page 1]
+Contreras, et al.       Expires 4 September 2020                [Page 1]
 
-Internet-Draft              ALTO using BGP-LS              February 2020
+Internet-Draft              ALTO using BGP-LS                 March 2020
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -70,33 +70,49 @@ Internet-Draft              ALTO using BGP-LS              February 2020
 Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   2.  Background  . . . . . . . . . . . . . . . . . . . . . . . . .   2
-     2.1.  ALTO Inter-domain Deployment Problem  . . . . . . . . . .   2
-     2.2.  BGP-LS Background and Benefits  . . . . . . . . . . . . .   2
+   2.  Background  . . . . . . . . . . . . . . . . . . . . . . . . .   3
+     2.1.  ALTO Inter-domain Deployment Problem  . . . . . . . . . .   3
+     2.2.  BGP-LS Background and Benefits  . . . . . . . . . . . . .   3
    3.  Requirements of Deploying ALTO in the Inter-domain
-           Scenario  . . . . . . . . . . . . . . . . . . . . . . . .   2
+           Scenario  . . . . . . . . . . . . . . . . . . . . . . . .   3
    4.  ALTO Deployment Considerations using BGP-LS . . . . . . . . .   3
      4.1.  Provisioning of Topology and Routing Information  . . . .   3
      4.2.  Provisioning of Performance Metric Information  . . . . .   3
    5.  Test Scenarios  . . . . . . . . . . . . . . . . . . . . . . .   3
    6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
      6.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
-     6.2.  Informative References  . . . . . . . . . . . . . . . . .   3
+     6.2.  Informative References  . . . . . . . . . . . . . . . . .   4
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   4
 
 1.  Introduction
 
-   BGP-LS enables ALTO server to provide underlay inter-domain topology
-   information.
+   The major component of the Application-Layer Traffic Optimization
+   (ALTO) deployment is the network information collection.  [RFC7971]
+   discussed multiple options to collect the network information from
+   the inter-domain networks.
 
-   To provide ALTO information effectively, some requirements for
-   deployment should be considered.
+   The Border Gateway Protocol - Link State (BGP-LS) extension is one of
+   the popular options and has been deployed in many Autonomous Systems
+   (ASes) in recent years [TODO: Need some reference].
+
+   BGP-LS enables ALTO server to provide underlay inter-domain topology
+   information using the link-state information in IGP domains.
+
+   To leverage BGP-LS to generate ALTO information effectively, some
+   requirements for deployment should be considered.
 
    This document discusses these requirements and the corresponding
    deployment considerations.
 
    Additionally, this document describes some inter-domain scenarios to
    test the deployment.
+
+
+
+Contreras, et al.       Expires 4 September 2020                [Page 2]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
 
 2.  Background
 
@@ -105,14 +121,6 @@ Table of Contents
 2.2.  BGP-LS Background and Benefits
 
 3.  Requirements of Deploying ALTO in the Inter-domain Scenario
-
-
-
-
-Contreras, et al.        Expires 31 August 2020                 [Page 2]
-
-Internet-Draft              ALTO using BGP-LS              February 2020
-
 
 4.  ALTO Deployment Considerations using BGP-LS
 
@@ -155,23 +163,22 @@ Internet-Draft              ALTO using BGP-LS              February 2020
               RFC 8571, DOI 10.17487/RFC8571, March 2019,
               <https://www.rfc-editor.org/info/rfc8571>.
 
+
+
+Contreras, et al.       Expires 4 September 2020                [Page 3]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
 6.2.  Informative References
 
    [I-D.ietf-alto-cost-calendar]
               Randriamasy, S., Yang, Y., WU, Q., Lingli, D., and N.
-              Schwan, "ALTO Cost Calendar", Work in Progress, Internet-
-              Draft, draft-ietf-alto-cost-calendar-17, 24 February 2020,
-
-
-
-
-Contreras, et al.        Expires 31 August 2020                 [Page 3]
-
-Internet-Draft              ALTO using BGP-LS              February 2020
-
-
+              Schwan, "Application-Layer Traffic Optimization (ALTO)
+              Cost Calendar", Work in Progress, Internet-Draft, draft-
+              ietf-alto-cost-calendar-19, 2 March 2020,
               <http://www.ietf.org/internet-drafts/draft-ietf-alto-cost-
-              calendar-17.txt>.
+              calendar-19.txt>.
 
    [I-D.ietf-alto-incr-update-sse]
               Roome, W. and Y. Yang, "ALTO Incremental Updates Using
@@ -211,19 +218,18 @@ Authors' Addresses
    Luis M. Contreras
    Telefonica
    Ronda de la Comunicacion, s/n
+
+
+
+Contreras, et al.       Expires 4 September 2020                [Page 4]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
    28050 Madrid
    Spain
 
    Email: luismiguel.contrerasmurillo@telefonica.com
-
-
-
-
-
-
-Contreras, et al.        Expires 31 August 2020                 [Page 4]
-
-Internet-Draft              ALTO using BGP-LS              February 2020
 
 
    Jingxuan Jensen Zhang
@@ -271,10 +277,4 @@ Internet-Draft              ALTO using BGP-LS              February 2020
 
 
 
-
-
-
-
-
-
-Contreras, et al.        Expires 31 August 2020                 [Page 5]
+Contreras, et al.       Expires 4 September 2020                [Page 5]
