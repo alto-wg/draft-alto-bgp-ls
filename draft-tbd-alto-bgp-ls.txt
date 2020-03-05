@@ -5,10 +5,10 @@
 ALTO WG                                                    LM. Contreras
 Internet-Draft                                                Telefonica
 Intended status: Standards Track                                J. Zhang
-Expires: 4 September 2020                              Tongji University
+Expires: 6 September 2020                              Tongji University
                                                                   K. Gao
                                                       Sichuan University
-                                                            3 March 2020
+                                                            5 March 2020
 
 
          Considerations of Providing ALTO Services using BGP-LS
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 September 2020.
+   This Internet-Draft will expire on 6 September 2020.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Contreras, et al.       Expires 4 September 2020                [Page 1]
+Contreras, et al.       Expires 6 September 2020                [Page 1]
 
 Internet-Draft              ALTO using BGP-LS                 March 2020
 
@@ -71,31 +71,53 @@ Table of Contents
 
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Background  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     2.1.  ALTO Inter-domain Deployment Problem  . . . . . . . . . .   3
-     2.2.  BGP-LS Background and Benefits  . . . . . . . . . . . . .   3
+     2.1.  BGP-LS Background and Benefits for ALTO . . . . . . . . .   3
+     2.2.  ALTO Inter-domain Deployment Problem using BGP-LS . . . .   3
    3.  Requirements for Deploying ALTO in the Inter-domain
-           Scenario  . . . . . . . . . . . . . . . . . . . . . . . .   3
-   4.  ALTO Deployment Considerations using BGP-LS . . . . . . . . .   3
-     4.1.  Provisioning of Topology Information  . . . . . . . . . .   3
-     4.2.  Provisioning of Routing Information . . . . . . . . . . .   3
-     4.3.  Provisioning of Performance Metric Information  . . . . .   3
-     4.4.  Examples of Map Calculation . . . . . . . . . . . . . . .   3
-   5.  Test Scenarios  . . . . . . . . . . . . . . . . . . . . . . .   3
-   6.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   3
-     6.1.  Normative References  . . . . . . . . . . . . . . . . . .   3
-     6.2.  Informative References  . . . . . . . . . . . . . . . . .   4
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   5
+           Scenario  . . . . . . . . . . . . . . . . . . . . . . . .   4
+   4.  ALTO Deployment Considerations using BGP-LS . . . . . . . . .   4
+     4.1.  Provisioning of Topology Information  . . . . . . . . . .   4
+     4.2.  Provisioning of Routing Information . . . . . . . . . . .   5
+     4.3.  Provisioning of Performance Metric Information  . . . . .   5
+   5.  Configuration Interfaces of Map Calculation . . . . . . . . .   5
+     5.1.  Configuration Interface of Network Map Calculation  . . .   5
+     5.2.  Configuration Interface of Cost Map Calculation . . . . .   5
+     5.3.  Configuration Examples  . . . . . . . . . . . . . . . . .   6
+   6.  Test Scenarios  . . . . . . . . . . . . . . . . . . . . . . .  11
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  11
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .  11
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .  11
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
 
 1.  Introduction
 
    The major component of the Application-Layer Traffic Optimization
-   (ALTO) deployment is the network information collection.  [RFC7971]
-   discussed multiple options to collect the network information from
-   the inter-domain networks.
+   (ALTO) [RFC7285] deployment is the network information collection.
+   [RFC7971] discussed multiple options to collect the network
+   information from the inter-domain networks.
 
-   The Border Gateway Protocol - Link State (BGP-LS) extension is one of
-   the popular options and has been deployed in many Autonomous Systems
-   (ASes) in recent years [TODO: Need some reference].
+   To collection the related network information for ALTO, the following
+   high-level questions should be considered:
+
+   *  Can the ALTO service realistically discover that information?
+
+   *  Is the distribution of that information allowed by the operators
+      of that service?
+
+   *  Is it information that a client cannot find easily some other way?
+
+
+
+
+Contreras, et al.       Expires 6 September 2020                [Page 2]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
+   The Border Gateway Protocol - Link State (BGP-LS) extension [RFC7752]
+   is one of the popular options and has been deployed in many
+   Autonomous Systems (ASes) in recent years [TODO: Need some
+   reference].
 
    BGP-LS enables ALTO server to provide underlay inter-domain topology
    information using the link-state information in IGP domains.
@@ -106,22 +128,70 @@ Table of Contents
    This document discusses these requirements and the corresponding
    deployment considerations.
 
-
-
-
-Contreras, et al.       Expires 4 September 2020                [Page 2]
-
-Internet-Draft              ALTO using BGP-LS                 March 2020
-
-
    Additionally, this document describes some inter-domain scenarios to
    test the deployment.
 
 2.  Background
 
-2.1.  ALTO Inter-domain Deployment Problem
+2.1.  BGP-LS Background and Benefits for ALTO
 
-2.2.  BGP-LS Background and Benefits
+   BGP-LS is designed to allow a BGP speaker to advertise the link state
+   database (LSDB) or traffic engineering database (TED) of its
+   connected IGP area.
+
+2.2.  ALTO Inter-domain Deployment Problem using BGP-LS
+
+   [RFC7971] discusses considerations of ALTO deployment in different
+   network scenarios.  The inter-domain network is the most common
+   scenario to deploy ALTO.
+
+   In practice, the following approaches are used to collect information
+   from the network:
+
+   *  IGP (e.g., OSPF, IS-IS): intra-domain topology, link weights
+
+   *  BGP: inter-domain topology, prefixes, AS numbers, AS distances, or
+      other BGP metrics
+
+   *  MP (e.g., SNMP, Netconf): latency, utilization, bandwidth
+
+   Using BGP-LS, the ALTO server can communicate to only BGP speakers to
+   collect all those information.
+
+   Qestions (by Anais):
+
+   *  Is it necessary to connect the ALTO server to every AS within a
+      BGP session?
+
+
+
+Contreras, et al.       Expires 6 September 2020                [Page 3]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
+   *  Does the session between the ALTO server and each AS have to
+      enable BGP-LS?
+
+   *  If using BGP-LS, can the number of necessary BGP sessions be
+      reduced?
+
+   +--------+   +--------+   +---------+
+   | AS A   |---| AS B   |---| AS C    |
+   +--------+   +--------+   +---------+
+        | BGP     / BGP-LS
+        |        /
+        |       /
+   +-------------+
+   | ALTO Server |
+   +-------------+
+
+                    Figure 1: Example AS-level Topology
+
+   Why not communicate to every BGP speaker?
+
+   *  Expensive workload
+
 
 3.  Requirements for Deploying ALTO in the Inter-domain Scenario
 
@@ -131,21 +201,378 @@ Internet-Draft              ALTO using BGP-LS                 March 2020
 
    Req 3: Collect performance metrics across routes.
 
+   Req 4: Minimize the number of sessions
+
 4.  ALTO Deployment Considerations using BGP-LS
 
 4.1.  Provisioning of Topology Information
 
+   High-level idea: Communicate to transit networks or IXPs using BGP-
+   LS.
+
+   Each BGP speaker can discover directly peered IGP topologies using
+   BGP-LS.
+
+   Find minimal BGP speaker set to cover all IGP topologies.
+
+
+
+
+
+
+
+Contreras, et al.       Expires 6 September 2020                [Page 4]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
 4.2.  Provisioning of Routing Information
+
+   High-level idea: Communicate to stub networks using BGP without BGP-
+   LS.
 
 4.3.  Provisioning of Performance Metric Information
 
-4.4.  Examples of Map Calculation
+5.  Configuration Interfaces of Map Calculation
 
-5.  Test Scenarios
+5.1.  Configuration Interface of Network Map Calculation
 
-6.  References
+   rw network-map-config* [resource-id]
+   +--rw resource-id      alto-types:resource-id
+   +--rw description?     string
+   +--rw (params)
+   |  +--:(openflow)
+   |  |  +--rw openflow-params
+   |  |     +--rw topology-id     topology:topology-id
+   |  +--:(bgp)
+   |     +--rw bgp-params
+   |        +--rw bgp-rib* [rib-id]
+   |           +--rw rib-id       rib:rib-id
+   |           +--rw topology-id? topology:topology-id
+   |           +--rw bgp-ls?      boolean
+   +--rw (algorithm)
+      +--:(shortest-path-tree-cluster)
+      |  +--rw spt-cluster-algorithm
+      |     +--rw spt-root        topology:topology-id
+      |     +--rw radix           int32
+      +--:(first-hop-cluster)
+         +--rw first-hop-cluster-algorithm
+            +--rw inspect-igp     boolean
 
-6.1.  Normative References
+5.2.  Configuration Interface of Cost Map Calculation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Contreras, et al.       Expires 6 September 2020                [Page 5]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
+   rw cost-map-config* [resource-id]
+   +--rw resource-id              alto-types:resource-id
+   +--rw description?             string
+   +--rw dependent-network-map    alto-types:resource-id
+   +--rw (general-params)
+   |  +--:(bgp)
+   |     +--rw bgp-params
+   |        +--rw alternative-bgp-rib* [rib-id]
+   |           +--rw rib-id            rib:rib-id
+   |           +--rw topology-id?      topology:topology-id
+   |           +--rw bgp-ls?           boolean
+   +--rw cost-type* [cost-mode,cost-metric]
+      +rw cost-mode                    alto-types:cost-mode
+      +rw cost-metric                  alto-types:cost-metric
+      +rw (params)?
+
+5.3.  Configuration Examples
+
+   Example Network
+
+   .----------------------------.                    .------------.
+   | 1.1.1.0/24    6.6.6.0/24   |                    | 8.8.8.0/24 |
+   |     |             |        |                    |     |      |
+   |   +-+--+        +-+--+     |                    |   +-+--+   |
+   |   | R1 +--------+ R6 |     |    .------------.  |   | R8 |   |
+   |   +-+--+        +-+--+     |    | 3.3.3.0/24 |  |   +-+--+   |
+   |     |             |        |    |    |       |  |     |      |
+   |     |           +-+--+     |    |  +-+--+    |  |   +-+--+   |
+   |     +-----------+ R2 +- - -|- - | -+ R3 +- - | -|- -+ R7 |   |
+   |                 +----+     |    |  +++--+    |  |   +----+   |
+   |                   |        |    |   ..       |  |            |
+   |                 +-+--+     |    |   ..AS 200 |  |     AS 300 |
+   | 5.5.5.0/24------+ R5 |     |    `------------'  `------------'
+   |                 +-+--+     |        ..
+   |                   |        |        ..
+   |   AS 100        +-+--+     |        ..
+   |                 | R4 +- - -|- - - - +.
+   |                 +-+--+     |         .
+   `----------------------------'         .
+                       .                  .
+                       .                  .
+                       .         +--------+----+
+                       +- - - - -+ ALTO Server |
+                                 +-------------+
+
+                                  Figure 2
+
+
+
+
+
+Contreras, et al.       Expires 6 September 2020                [Page 6]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
+   R2 - R3: BGP-LS R4 - R3: BGP-LS R7 - R3: BGP-LS R3 - ALTO: BGP-LS R4
+   - ALTO: BGP
+
+   Config a network map:
+
+   POST /restconf/config/alto-maps/network-map-config/bgp-networkmap
+   HOST: alto-config.example.com
+   Content-Type: application/json
+   Content-Length: TBD
+
+   {
+     "network-map-config": {
+       "resource-id": "bgp-networkmap",
+       "bgp-params": {
+         "bgp-rib": [
+           {
+             "rib-id": "as200-r3",
+             "bgp-ls": true
+           }
+         ]
+       },
+       "first-hop-cluster-algorithm": {
+         "inspect-igp": true
+       }
+     }
+   }
+
+   Test to fetch the network map:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Contreras, et al.       Expires 6 September 2020                [Page 7]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
+   GET /alto/networkmap/example
+   HOST: alto.example.com
+
+   HTTP/1.1 200 OK
+   Content-Length: TBD
+   Content-Type: application/alto-networkmap+json
+
+   {
+     "meta": {
+       "vtag": {
+         "resource-id": "bgp-networkmap",
+         "tag": "da65eca2eb7a10ce8b059740b0b2e3f8eb1d4785"
+       }
+     },
+     {
+       "network-map": {
+         "PID100.R1": {
+           "ipv4": [ "1.1.1.0/24" ]
+         },
+         "PID100.R5": {
+           "ipv4": [ "5.5.5.0/24" ]
+         },
+         "PID100.R6": {
+           "ipv4": [ "6.6.6.0/24" ]
+         },
+         "PID200.R3": {
+           "ipv4": [ "3.3.3.0/24" ]
+         },
+         "PID300.R8": {
+           "ipv4": [ "8.8.8.0/24" ]
+         }
+       }
+     }
+   }
+
+   Config a cost map:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Contreras, et al.       Expires 6 September 2020                [Page 8]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
+   POST /restconf/config/alto-maps/cost-map-config/bgp-costmap
+   HOST: alto-config.example.com
+   Content-Type: application/json
+   Content-Length: TBD
+
+   {
+     "cost-map-config": {
+       "resource-id": "bgp-costmap",
+       "dependent-network-map": "bgp-networkmap",
+       "bgp-params": {
+         "alternative-bgp-rib": [
+           {
+             "rib-id": "as100-r4",
+             "bgp-ls": false
+           }
+         ]
+       },
+       "cost-type": [
+         {
+           "cost-mode": "numerical",
+           "cost-metric": "hopcount"
+         }
+       ]
+     }
+   }
+
+   Test to fetch the cost map:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Contreras, et al.       Expires 6 September 2020                [Page 9]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
+   GET /alto/costmap/bgp-costmap
+   HOST: alto.example.com
+
+   HTTP/1.1 200 OK
+   Content-Length: TBD
+   Content-Type: application/alto-costmap+json
+
+   {
+     "meta": {
+       "vtag": {
+         "resource-id": "bgp-costmap",
+         "tag": "c0ce023b8678a7b9ec00324673b98e54656d1f6d"
+       },
+       "dependent-vtags": [
+         {
+           "resource-id": "bgp-networkmap",
+           "tag": "da65eca2eb7a10ce8b059740b0b2e3f8eb1d4785"
+         }
+       ],
+       "cost-type": {
+         "cost-mode": "numerical",
+         "cost-metric": "hopcount"
+       }
+     },
+     "cost-map": {
+       "PID100.R1": {
+         "PID100.R1": 1, "PID100.R5": 3, "PID100.R6": 2,
+         "PID200.R3": 3, "PID300.R8": 5
+       },
+       "PID100.R5": {
+         "PID100.R1": 3, "PID100.R5": 1, "PID100.R6": 3,
+         "PID200.R3": 3, "PID300.R8": 5
+       },
+       "PID100.R6": {
+         "PID100.R1": 2, "PID100.R5": 3, "PID100.R6": 1,
+         "PID200.R3": 3, "PID300.R8": 5
+       },
+       "PID200.R3": {
+         "PID100.R1": 3, "PID100.R5": 3, "PID100.R6": 3,
+         "PID200.R3": 1, "PID300.R8": 3
+       },
+       "PID300.R8": {
+         "PID100.R1": 5, "PID100.R5": 5, "PID100.R6": 5,
+         "PID200.R3": 3, "PID300.R8": 1
+       }
+     }
+   }
+
+
+
+
+Contreras, et al.       Expires 6 September 2020               [Page 10]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
+6.  Test Scenarios
+
+   Test topology
+
+   Test approach
+
+   Test results
+
+7.  References
+
+7.1.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -161,15 +588,6 @@ Internet-Draft              ALTO using BGP-LS                 March 2020
    [RFC7752]  Gredler, H., Ed., Medved, J., Previdi, S., Farrel, A., and
               S. Ray, "North-Bound Distribution of Link-State and
               Traffic Engineering (TE) Information Using BGP", RFC 7752,
-
-
-
-
-Contreras, et al.       Expires 4 September 2020                [Page 3]
-
-Internet-Draft              ALTO using BGP-LS                 March 2020
-
-
               DOI 10.17487/RFC7752, March 2016,
               <https://www.rfc-editor.org/info/rfc7752>.
 
@@ -185,13 +603,21 @@ Internet-Draft              ALTO using BGP-LS                 March 2020
               RFC 8571, DOI 10.17487/RFC8571, March 2019,
               <https://www.rfc-editor.org/info/rfc8571>.
 
-6.2.  Informative References
+7.2.  Informative References
 
    [I-D.ietf-alto-cost-calendar]
               Randriamasy, S., Yang, Y., WU, Q., Lingli, D., and N.
               Schwan, "Application-Layer Traffic Optimization (ALTO)
               Cost Calendar", Work in Progress, Internet-Draft, draft-
               ietf-alto-cost-calendar-19, 2 March 2020,
+
+
+
+Contreras, et al.       Expires 6 September 2020               [Page 11]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
+
+
               <http://www.ietf.org/internet-drafts/draft-ietf-alto-cost-
               calendar-19.txt>.
 
@@ -218,14 +644,6 @@ Internet-Draft              ALTO using BGP-LS                 March 2020
 
    [I-D.wang-idr-bgpls-inter-as-topology-ext]
               Wang, A. and H. Chen, "BGP-LS Extension for Inter-AS
-
-
-
-Contreras, et al.       Expires 4 September 2020                [Page 4]
-
-Internet-Draft              ALTO using BGP-LS                 March 2020
-
-
               Topology Retrieval", Work in Progress, Internet-Draft,
               draft-wang-idr-bgpls-inter-as-topology-ext-02, 13 August
               2018, <http://www.ietf.org/internet-drafts/draft-wang-idr-
@@ -245,6 +663,15 @@ Authors' Addresses
    Spain
 
    Email: luismiguel.contrerasmurillo@telefonica.com
+
+
+
+
+
+
+Contreras, et al.       Expires 6 September 2020               [Page 12]
+
+Internet-Draft              ALTO using BGP-LS                 March 2020
 
 
    Jingxuan Jensen Zhang
@@ -277,4 +704,25 @@ Authors' Addresses
 
 
 
-Contreras, et al.       Expires 4 September 2020                [Page 5]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Contreras, et al.       Expires 6 September 2020               [Page 13]
