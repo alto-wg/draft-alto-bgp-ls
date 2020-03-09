@@ -4,10 +4,13 @@
 <meta charset="utf-8">
 <meta content="Common,Latin" name="scripts">
 <meta content="initial-scale=1.0" name="viewport">
-<title>Considerations of Providing ALTO Services using BGP-LS</title>
-<meta content="Luis M. Contreras" name="author">
+<title>Considerations of Deploying ALTO using BGP - Link State (BGP-LS) Advertisement</title>
 <meta content="Jingxuan Jensen Zhang" name="author">
 <meta content="Kai Gao" name="author">
+<meta content="Luis M. Contreras" name="author">
+<meta content="Anais Escribano" name="author">
+<meta content="Patricia Cano" name="author">
+<meta content="Francisco Cano" name="author">
 <meta content="
        This document discusses the requirements and deployment considerations of
 providing Application-Layer Traffic Optimization (ALTO) information in the
@@ -16,8 +19,8 @@ extension.
     " name="description">
 <meta content="xml2rfc 2.40.0" name="generator">
 <meta content="ALTO, Internet-Draft" name="keyword">
-<meta content="draft-tbd-alto-bgp-ls-latest" name="ietf.draft">
-<link href="draft-tbd-alto-bgp-ls.xml" rel="alternate" type="application/rfc+xml">
+<meta content="draft-zhang-alto-bgp-ls-latest" name="ietf.draft">
+<link href="draft-zhang-alto-bgp-ls.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@import url('https://martinthomson.github.io/i-d-template/fonts.css');
 
@@ -827,7 +830,7 @@ table.left {
 <td class="right">March 2020</td>
 </tr></thead>
 <tfoot><tr>
-<td class="left">Contreras, et al.</td>
+<td class="left">Zhang, et al.</td>
 <td class="center">Expires 10 September 2020</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
@@ -838,21 +841,17 @@ table.left {
 <dt class="label-workgroup">Workgroup:</dt>
 <dd class="workgroup">ALTO WG</dd>
 <dt class="label-internet-draft">Internet-Draft:</dt>
-<dd class="internet-draft">draft-tbd-alto-bgp-ls-latest</dd>
+<dd class="internet-draft">draft-zhang-alto-bgp-ls-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
 <time datetime="2020-03-09" class="published">9 March 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
-<dd class="intended-status">Standards Track</dd>
+<dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
 <dd class="expires"><time datetime="2020-09-10">10 September 2020</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
-<div class="author">
-      <div class="author-name">LM. Contreras</div>
-<div class="org">Telefonica</div>
-</div>
 <div class="author">
       <div class="author-name">J. Zhang</div>
 <div class="org">Tongji University</div>
@@ -861,10 +860,26 @@ table.left {
       <div class="author-name">K. Gao</div>
 <div class="org">Sichuan University</div>
 </div>
+<div class="author">
+      <div class="author-name">LM. Contreras</div>
+<div class="org">Telefonica</div>
+</div>
+<div class="author">
+      <div class="author-name">A. Escribano</div>
+<div class="org">Alten</div>
+</div>
+<div class="author">
+      <div class="author-name">P. Cano</div>
+<div class="org">UST Global</div>
+</div>
+<div class="author">
+      <div class="author-name">F. Cano</div>
+<div class="org">Telefonica</div>
+</div>
 </dd>
 </dl>
 </div>
-<h1 id="title">Considerations of Providing ALTO Services using BGP-LS</h1>
+<h1 id="title">Considerations of Deploying ALTO using BGP - Link State (BGP-LS) Advertisement</h1>
 <section id="section-abstract">
       <h2 id="abstract"><a href="#abstract" class="selfRef">Abstract</a></h2>
 <p id="section-abstract-1">This document discusses the requirements and deployment considerations of
@@ -946,7 +961,15 @@ interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]<
 </ul>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-requirements-for-deploying-" class="xref">Requirements for Deploying ALTO in the Inter-domain Scenario</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-requirements-for-deploying-" class="xref">Requirements for Deploying ALTO in the Inter-domain Scenario using BGP-LS</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
+<ul class="toc ulEmpty">
+<li class="toc ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-basic-requirements" class="xref">Basic Requirements</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
+</li>
+<li class="toc ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-bgp-ls-specific-requirement" class="xref">BGP-LS specific Requirements</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
+</li>
+</ul>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-alto-deployment-considerati" class="xref">ALTO Deployment Considerations using BGP-LS</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
@@ -978,6 +1001,17 @@ interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]<
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-test-scenarios" class="xref">Test Scenarios</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+<ul class="toc ulEmpty">
+<li class="toc ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-test-environment-setup" class="xref">Test Environment Setup</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
+</li>
+<li class="toc ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-test-approach" class="xref">Test Approach</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
+</li>
+<li class="toc ulEmpty" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-test-results" class="xref">Test Results</a><a href="#section-toc.1-1.6.2.3.1" class="pilcrow">¶</a></p>
+</li>
+</ul>
 </li>
 <li class="toc ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
@@ -1135,16 +1169,33 @@ required to be answered:<a href="#section-2.3-9" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
-<div id="requirements-for-deploying-alto-in-the-inter-domain-scenario">
+<div id="requirements-for-deploying-alto-in-the-inter-domain-scenario-using-bgp-ls">
 <section id="section-3">
       <h2 id="name-requirements-for-deploying-">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-requirements-for-deploying-" class="section-name selfRef">Requirements for Deploying ALTO in the Inter-domain Scenario</a>
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-requirements-for-deploying-" class="section-name selfRef">Requirements for Deploying ALTO in the Inter-domain Scenario using BGP-LS</a>
       </h2>
-<p id="section-3-1">Req 1: Collect topology information from multiple IGP areas.<a href="#section-3-1" class="pilcrow">¶</a></p>
-<p id="section-3-2">Req 2: Collect routing information for any pairs of endpoints.<a href="#section-3-2" class="pilcrow">¶</a></p>
-<p id="section-3-3">Req 3: Collect performance metrics across routes.<a href="#section-3-3" class="pilcrow">¶</a></p>
-<p id="section-3-4">Req 4: Minimize the number of BGP sessions.<a href="#section-3-4" class="pilcrow">¶</a></p>
-<p id="section-3-5">Req 5: Minimize the number of BGP sessions with BGP-LS.<a href="#section-3-5" class="pilcrow">¶</a></p>
+<div id="basic-requirements">
+<section id="section-3.1">
+        <h3 id="name-basic-requirements">
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-basic-requirements" class="section-name selfRef">Basic Requirements</a>
+        </h3>
+<p id="section-3.1-1">The following basic requirements are required by ALTO inter-domain deployment in any case.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">Req 1: The ALTO server MUST be able to collect topology information from
+multiple IGP areas.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<p id="section-3.1-3">Req 2: The ALTO server MUST be able to collect routing information for any pairs of endpoints.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
+<p id="section-3.1-4">Req 3: The ALTO server MUST be able to collect performance metrics across routes.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="bgp-ls-specific-requirements">
+<section id="section-3.2">
+        <h3 id="name-bgp-ls-specific-requirement">
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-bgp-ls-specific-requirement" class="section-name selfRef">BGP-LS specific Requirements</a>
+        </h3>
+<p id="section-3.2-1">The following additional requirements are required by ALTO deployment when using BGP-LS.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">Req 4: The ALTO server SHOULD only communicate with necessary BGP speakers.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Req 5: The ALTO server SHOULD only enable BGP-LS advertisement in necessary BGP sessions between BGP speakers.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+</section>
+</div>
 </section>
 </div>
 <div id="alto-deployment-considerations-using-bgp-ls">
@@ -1152,16 +1203,22 @@ required to be answered:<a href="#section-2.3-9" class="pilcrow">¶</a></p>
       <h2 id="name-alto-deployment-considerati">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-alto-deployment-considerati" class="section-name selfRef">ALTO Deployment Considerations using BGP-LS</a>
       </h2>
-<p id="section-4-1">This section discusses some deployment considerations about how to satisfy
-Req 1-3 over Req 4-5 in the previous section.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<p id="section-4-1">This section discusses some deployment considerations about how to address
+the basic requirements (Req 1-3) when satisfying the BGP-LS specific
+requirements (Req 4-5).<a href="#section-4-1" class="pilcrow">¶</a></p>
 <div id="provisioning-of-topology-information">
 <section id="section-4.1">
         <h3 id="name-provisioning-of-topology-in">
 <a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-provisioning-of-topology-in" class="section-name selfRef">Provisioning of Topology Information</a>
         </h3>
-<p id="section-4.1-1">High-level idea: Communicate to transit networks or IXPs using BGP-LS.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">Each BGP speaker can discover directly peered IGP topologies using BGP-LS.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1-3">Find minimal BGP speaker set to cover all IGP topologies.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">As BGP-LS advertisement cannot be propagated to remote the remote ASes, each
+BGP speaker can only discover directly peered IGP topologies using BGP-LS.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">To satisfy Req 4, the ALTO server should only communicate to transit networks
+or IXPs using BGP-LS. As the IGP topology of a stub network can always be
+discovered by its peered transit networks or IXPs, so it is not necessary to
+communicate with the stub network.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1-3">Specifically, the ALTO server should find a minimal BGP speaker set whose
+peered networks can cover all IGP domains.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="provisioning-of-routing-information">
@@ -1169,7 +1226,17 @@ Req 1-3 over Req 4-5 in the previous section.<a href="#section-4-1" class="pilcr
         <h3 id="name-provisioning-of-routing-inf">
 <a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-provisioning-of-routing-inf" class="section-name selfRef">Provisioning of Routing Information</a>
         </h3>
-<p id="section-4.2-1">High-level idea: Communicate to stub networks using BGP without BGP-LS.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">As BGP is a destination-based routing protocol, a stub network can receive
+all the inter-domain routing information from all the reachable destinations
+via BGP.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">Thus, to satisfy Req 4, the ALTO server should only communicate to stub networks
+using BGP, as the inter-domain routing information from the transit networks is
+not necessary.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-3">Assuming the ALTO server has already collected the complete topology
+information using BGP-LS, the ALTO server will have the LSDB of every IGP
+domain.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
+<p id="section-4.2-4">To satisfy Req 5, all the BGP sessions connected to the stub networks do not
+have to enable BGP-LS.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="provisioning-of-performance-metric-information">
@@ -1286,11 +1353,18 @@ information to the ALTO server.<a href="#section-5.2-2" class="pilcrow">¶</a></
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a></figcaption></figure>
 </div>
-<p id="section-5.3-3">R2 - R3: BGP-LS
-R4 - R3: BGP-LS
-R7 - R3: BGP-LS
-R3 - ALTO: BGP-LS
-R4 - ALTO: BGP<a href="#section-5.3-3" class="pilcrow">¶</a></p>
+<ul>
+<li id="section-5.3-3.1">R2 - R3: BGP-LS<a href="#section-5.3-3.1" class="pilcrow">¶</a>
+</li>
+<li id="section-5.3-3.2">R4 - R3: BGP-LS<a href="#section-5.3-3.2" class="pilcrow">¶</a>
+</li>
+<li id="section-5.3-3.3">R7 - R3: BGP-LS<a href="#section-5.3-3.3" class="pilcrow">¶</a>
+</li>
+<li id="section-5.3-3.4">R3 - ALTO: BGP-LS<a href="#section-5.3-3.4" class="pilcrow">¶</a>
+</li>
+<li id="section-5.3-3.5">R4 - ALTO: BGP<a href="#section-5.3-3.5" class="pilcrow">¶</a>
+</li>
+</ul>
 <p id="section-5.3-4">Config a network map:<a href="#section-5.3-4" class="pilcrow">¶</a></p>
 <div class="artwork art-text alignLeft" id="section-5.3-5">
 <pre>
@@ -1447,9 +1521,27 @@ Content-Type: application/alto-costmap+json
       <h2 id="name-test-scenarios">
 <a href="#section-6" class="section-number selfRef">6. </a><a href="#name-test-scenarios" class="section-name selfRef">Test Scenarios</a>
       </h2>
-<p id="section-6-1">Test environment setup<a href="#section-6-1" class="pilcrow">¶</a></p>
-<p id="section-6-2">Test approach<a href="#section-6-2" class="pilcrow">¶</a></p>
-<p id="section-6-3">Test results<a href="#section-6-3" class="pilcrow">¶</a></p>
+<div id="test-environment-setup">
+<section id="section-6.1">
+        <h3 id="name-test-environment-setup">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-test-environment-setup" class="section-name selfRef">Test Environment Setup</a>
+      </h3>
+</section>
+</div>
+<div id="test-approach">
+<section id="section-6.2">
+        <h3 id="name-test-approach">
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-test-approach" class="section-name selfRef">Test Approach</a>
+      </h3>
+</section>
+</div>
+<div id="test-results">
+<section id="section-6.3">
+        <h3 id="name-test-results">
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-test-results" class="section-name selfRef">Test Results</a>
+      </h3>
+</section>
+</div>
 </section>
 </div>
 <section id="section-7">
@@ -1513,18 +1605,6 @@ Content-Type: application/alto-costmap+json
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
 <address class="vcard">
-        <div dir="auto" class="left"><span class="fn nameRole">Luis M. Contreras</span></div>
-<div dir="auto" class="left"><span class="org">Telefonica</span></div>
-<div dir="auto" class="left"><span class="street-address">Ronda de la Comunicacion, s/n</span></div>
-<div dir="auto" class="left">
-<span class="postal-code">28050</span> <span class="locality">Madrid</span> </div>
-<div dir="auto" class="left"><span class="country-name">Spain</span></div>
-<div class="email">
-<span>Email:</span>
-<a href="mailto:luismiguel.contrerasmurillo@telefonica.com" class="email">luismiguel.contrerasmurillo@telefonica.com</a>
-</div>
-</address>
-<address class="vcard">
         <div dir="auto" class="left"><span class="fn nameRole">Jingxuan Jensen Zhang</span></div>
 <div dir="auto" class="left"><span class="org">Tongji University</span></div>
 <div dir="auto" class="left"><span class="street-address">4800 Cao'An Hwy</span></div>
@@ -1546,6 +1626,54 @@ Content-Type: application/alto-costmap+json
 <div class="email">
 <span>Email:</span>
 <a href="mailto:kaigao@scu.edu.cn" class="email">kaigao@scu.edu.cn</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Luis M. Contreras</span></div>
+<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div dir="auto" class="left"><span class="street-address">Ronda de la Comunicacion, s/n</span></div>
+<div dir="auto" class="left">
+<span class="postal-code">28050</span> <span class="locality">Madrid</span> </div>
+<div dir="auto" class="left"><span class="country-name">Spain</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:luismiguel.contrerasmurillo@telefonica.com" class="email">luismiguel.contrerasmurillo@telefonica.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Anais Escribano</span></div>
+<div dir="auto" class="left"><span class="org">Alten</span></div>
+<div dir="auto" class="left"><span class="street-address">Carrer de Josep Pla, 2</span></div>
+<div dir="auto" class="left">
+<span class="postal-code">08019</span> <span class="locality">Barcelona</span> </div>
+<div dir="auto" class="left"><span class="country-name">Spain</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:anais.escribano@alten.es" class="email">anais.escribano@alten.es</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Patricia Cano</span></div>
+<div dir="auto" class="left"><span class="org">UST Global</span></div>
+<div dir="auto" class="left"><span class="street-address">Ramirez de Arellano 29</span></div>
+<div dir="auto" class="left">
+<span class="postal-code">28043</span> <span class="locality">Madrid</span> </div>
+<div dir="auto" class="left"><span class="country-name">Spain</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:Patricia.Diez@ust-global.com" class="email">Patricia.Diez@ust-global.com</a>
+</div>
+</address>
+<address class="vcard">
+        <div dir="auto" class="left"><span class="fn nameRole">Francisco Cano</span></div>
+<div dir="auto" class="left"><span class="org">Telefonica</span></div>
+<div dir="auto" class="left"><span class="street-address">Avenida del Conocimiento, 12</span></div>
+<div dir="auto" class="left">
+<span class="postal-code">18016</span> <span class="locality">Granada</span> </div>
+<div dir="auto" class="left"><span class="country-name">Spain</span></div>
+<div class="email">
+<span>Email:</span>
+<a href="mailto:franciscojose.canohila@telefonica.com" class="email">franciscojose.canohila@telefonica.com</a>
 </div>
 </address>
 </section>
