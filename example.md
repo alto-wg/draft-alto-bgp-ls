@@ -1,7 +1,7 @@
 # Test Scenarios
 
-Test environment setup
+## Test Environment Setup
 
-Test approach
+## Test Approach
 
-Test results
+## Test Results

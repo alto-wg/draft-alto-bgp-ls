@@ -1,8 +1,8 @@
 ---
-docname: draft-tbd-alto-bgp-ls-latest
-title: Considerations of Providing ALTO Services using BGP-LS
+docname: draft-zhang-alto-bgp-ls-latest
+title: Considerations of Deploying ALTO using BGP - Link State (BGP-LS) Advertisement
 abbrev: ALTO using BGP-LS
-category: std
+category: info
 
 ipr: trust200902
 area: Networks
@@ -26,15 +26,6 @@ pi:
 
 author:
  -
-    ins: LM. Contreras
-    name: Luis M. Contreras
-    organization: Telefonica
-    email: luismiguel.contrerasmurillo@telefonica.com
-    street: Ronda de la Comunicacion, s/n
-    city: Madrid
-    code: 28050
-    country: Spain
- -
     ins: J. Zhang
     name: Jingxuan Jensen Zhang
     organization: Tongji University
@@ -52,6 +43,42 @@ author:
     country: China
     org: Sichuan University
     email: kaigao@scu.edu.cn
+ -
+    ins: LM. Contreras
+    name: Luis M. Contreras
+    organization: Telefonica
+    email: luismiguel.contrerasmurillo@telefonica.com
+    street: Ronda de la Comunicacion, s/n
+    city: Madrid
+    code: 28050
+    country: Spain
+ -
+    ins: A. Escribano
+    name: Anais Escribano
+    organization: Alten
+    email: anais.escribano@alten.es
+    street: Carrer de Josep Pla, 2
+    city: Barcelona
+    code: 08019
+    country: Spain
+ -
+    ins: P. Cano
+    name: Patricia Cano
+    organization: UST Global
+    email: Patricia.Diez@ust-global.com
+    street: Ramirez de Arellano 29
+    city: Madrid
+    code: 28043
+    country: Spain
+ -
+    ins: F. Cano
+    name: Francisco Cano
+    organization: Telefonica
+    email: franciscojose.canohila@telefonica.com
+    street: Avenida del Conocimiento, 12
+    city: Granada
+    code: 18016
+    country: Spain
 
 normative:
   RFC2119:
