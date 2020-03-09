@@ -1,5 +1,8 @@
 # ALTO Deployment Considerations using BGP-LS
 
+This section discusses some deployment considerations about how to satisfy
+Req 1-3 over Req 4-5 in the previous section.
+
 ## Provisioning of Topology Information
 
 High-level idea: Communicate to transit networks or IXPs using BGP-LS.
@@ -14,6 +17,8 @@ High-level idea: Communicate to stub networks using BGP without BGP-LS.
 
 ## Provisioning of Performance Metric Information
 
+TBD.
+
 # Configuration Interfaces of Map Calculation
 
 ## Configuration Interface of Network Map Calculation
@@ -23,9 +28,6 @@ rw network-map-config* [resource-id]
 +--rw resource-id      alto-types:resource-id
 +--rw description?     string
 +--rw (params)
-|  +--:(openflow)
-|  |  +--rw openflow-params
-|  |     +--rw topology-id     topology:topology-id
 |  +--:(bgp)
 |     +--rw bgp-params
 |        +--rw bgp-rib* [rib-id]
@@ -33,14 +35,19 @@ rw network-map-config* [resource-id]
 |           +--rw topology-id? topology:topology-id
 |           +--rw bgp-ls?      boolean
 +--rw (algorithm)
-   +--:(shortest-path-tree-cluster)
-   |  +--rw spt-cluster-algorithm
-   |     +--rw spt-root        topology:topology-id
-   |     +--rw radix           int32
    +--:(first-hop-cluster)
       +--rw first-hop-cluster-algorithm
          +--rw inspect-igp     boolean
 ~~~
+
+To generate a network map, one or more BGP RIBs that could provide the
+topology information MUST specified. Each BGP RIB MAY include a pre-computed
+topology from the RIB, and an option indicating if the BPG-LS is enabled.
+
+The `inspect-igp` option in the `first-hop-cluster-algorithm` field indicates
+if the ALTO server exposes information about the IGP topologies. If it is
+true, the ALTO server will inspect all the IGP topolgies from the BGP RIBs
+that enalbe BGP-LS (whose `bgp-ls` option is true).
 
 ## Configuration Interface of Cost Map Calculation
 
@@ -61,6 +68,10 @@ rw cost-map-config* [resource-id]
    +rw cost-metric                  alto-types:cost-metric
    +rw (params)?
 ~~~
+
+To generate a cost map, besides the dependent network map, one or more
+alternative BGP RIBs could be specified to provide necessary routing
+information to the ALTO server.
 
 ## Configuration Examples
 
