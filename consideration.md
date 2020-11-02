@@ -121,14 +121,14 @@ Example Network
                     .         +--------+----+
                     +- - - - -+ ALTO Server |
                               +-------------+
+
+R2 - R3: BGP-LS
+R4 - R3: BGP-LS
+R7 - R3: BGP-LS
+R3 - ALTO: BGP-LS
+R4 - ALTO: BGP
 ~~~
 {: #fig-example-network Example Network}
-
-- R2 - R3: BGP-LS
-- R4 - R3: BGP-LS
-- R7 - R3: BGP-LS
-- R3 - ALTO: BGP-LS
-- R4 - ALTO: BGP
 
 Config a network map:
 
