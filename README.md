@@ -1,6 +1,6 @@
 # Considerations of Deploying ALTO using BGP-LS
 
-[![Travis branch](https://img.shields.io/travis/alto-wg/draft-alto-bgp-ls/master.svg)](https://travis-ci.org/alto-wg/draft-alto-bgp-ls)
+[![Action Status](https://github.com/ietf-wg-alto/draft-ietf-alto-oam-yang/actions/workflows/ghpages.yml/badge.svg)](https://github.com/ietf-wg-alto/draft-ietf-alto-oam-yang/actions/workflows/ghpages.yml)
 
 This is the working area for the individual Internet-Draft, "Considerations of Providing ALTO Services using BGP-LS".
 
