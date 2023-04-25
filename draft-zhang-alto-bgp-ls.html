@@ -17,24 +17,216 @@ providing Application-Layer Traffic Optimization (ALTO) information in the
 inter-domain scenario using Border Gateway Protocol - Link State (BGP-LS)
 extension. 
     " name="description">
-<meta content="xml2rfc 2.40.0" name="generator">
+<meta content="xml2rfc 3.17.1" name="generator">
 <meta content="ALTO, Internet-Draft" name="keyword">
 <meta content="draft-zhang-alto-bgp-ls-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.17.1
+    Python 3.10.11
+    appdirs 1.4.4
+    ConfigArgParse 1.5.3
+    google-i18n-address 2.5.2
+    intervaltree 3.1.0
+    Jinja2 3.1.2
+    lxml 4.9.2
+    pycountry 22.3.5
+    PyYAML 6.0
+    requests 2.28.1
+    setuptools 65.6.0
+    six 1.16.0
+    wcwidth 0.2.6
+-->
 <link href="draft-zhang-alto-bgp-ls.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
-<style type="text/css">@import url('https://martinthomson.github.io/i-d-template/fonts.css');
+<style type="text/css">@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
 
-html {
+@font-face {
+  font-family: 'Lora';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Italic'), local('Lora-Italic'), url('https://martinthomson.github.io/rfc-css/fonts/lora-italic-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Lora Regular'), local('Lora-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/lora-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-cyrillic.woff2') format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Lora Bold'), local('Lora-Bold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-bold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Lora';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Lora SemiBold'), local('Lora-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/lora-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-vietnamese.woff2') format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Cabin Condensed';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: local('Cabin Condensed SemiBold'), local('CabinCondensed-SemiBold'), url('https://martinthomson.github.io/rfc-css/fonts/cabincondensed-semibold-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Oxygen Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root {
+  color-scheme: light dark;
   --background-color: #fff;
   --text-color: #222;
   --title-color: #191919;
   --link-color: #2a6496;
   --highlight-color: #f9f9f9;
   --line-color: #eee;
+  --pilcrow-weak: #ddd;
+  --pilcrow-strong: #bbb;
   --small-font-size: 14.5px;
+  --font-mono: 'Oxygen Mono', monospace;
+  scrollbar-color: #bbb #eee;
 }
 body {
-  max-width: 624px;
+  max-width: 600px;
   margin: 75px auto;
   padding: 0 5px;
   color: var(--text-color);
@@ -48,43 +240,51 @@ body {
 }
 
 /* headings */
-#title, h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Cabin Condensed", sans-serif;
   font-weight: 600;
   margin: 0.8em 0 0.3em;
   font-size-adjust: 0.5;
   color: var(--title-color);
 }
-#title {
-  padding: 1em 0 0.2em;
+h1#title {
   font-size: 32px;
   line-height: 40px;
   clear: both;
 }
+h1#title, h1#rfcnum {
+  margin: 1.5em 0 0.2em;
+}
+h1#rfcnum + h1#title {
+  margin: 0.2em 0;
+}
+
 h1, h2, h3 {
   font-size: 22px;
-  line-height: 26px;
+  line-height: 27px;
 }
 h4, h5, h6 {
-  font-size: 18px;
-  line-height: 22px;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 /* general structure */
 .author {
   padding-bottom: 0.3em;
 }
-#abstract+p, #abstract+p code, #abstract+p samp, #abstract+p tt {
+#abstract+p {
   font-size: 18px;
   line-height: 24px;
 }
+#abstract+p code, #abstract+p samp, #abstract+p tt {
+  font-size: 16px;
+  line-height: 0;
+}
+
 p {
   padding: 0;
   margin: 0.5em 0;
   text-align: left;
-}
-div, span {
-  position: relative;
 }
 div {
   margin: 0;
@@ -117,6 +317,10 @@ div {
 svg {
   display: block;
 }
+/* font-family isn't space-separated, but =~ will have to do */
+svg[font-family~="monospace" i], svg [font-family~="monospace" i] {
+  font-family: var(--font-mono);
+}
 .alignCenter.art-text {
   background-color: var(--highlight-color);
   border: 1px solid var(--line-color);
@@ -143,9 +347,9 @@ svg {
 /* lists */
 ol, ul {
   padding: 0;
-  margin: 0 0 1em 2em;
+  margin: 0 0 0.5em 2em;
 }
-ol ol, ul ul, ol ul, ul ol {
+:is(ol, ul) :is(ol, ul) {
   margin-left: 1em;
 }
 li {
@@ -160,40 +364,62 @@ ul.empty, .ulEmpty {
 ul.empty li, .ulEmpty li {
   margin-top: 0.5em;
 }
-ul.compact, .ulCompact,
-ol.compact, .olCompact {
-  line-height: 100%;
+:is(ul, ol).compact, .ulCompact, .olCompact {
+  line-height: 1;
   margin: 0 0 0 2em;
 }
 
 /* definition lists */
 dl {
+  clear: left;
+  --indent: 3ch;
+  /* --indent: attr(indent ch); not supported in any browser, but we can dream */
+}
+dl.olPercent {
+  --indent: 5ch;
 }
 dl > dt {
   float: left;
-  margin-right: 1em;
+  margin-right: 2ch;
+  min-width: 8ch;
+}
+dl.dlNewline > dt {
+  float: none;
 }
 dl > dd {
   margin-bottom: .8em;
-  min-height: 1.3em;
+  margin-left: var(--indent) !important; /* stupid element overrides */
+  min-height: 2ex;
 }
-dl.compact > dd, .dlCompact > dd {
-  margin-bottom: 0em;
+dl.olPercent > dt {
+  min-width: calc(var(--indent) - 2ch);
+}
+:is(dl.compact, .dlCompact) > dd {
+  margin-bottom: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:first-child, .break:first-child + *) {
+  margin-top: 0;
+}
+:is(dl.compact, .dlCompact) > dd > :is(:last-child) {
+  margin-bottom: 0;
 }
 dl > dd > dl {
   margin-top: 0.5em;
-  margin-bottom: 0em;
+  margin-bottom: 0;
+}
+:is(dd, span).break {
+  display: none;
 }
 
 /* links */
 a, a[href].selfRef:hover {
   text-decoration: none;
 }
-a[href].selfRef {
-  color: var(--text-color);
-}
 a[href] {
   color: var(--link-color);
+}
+a[href].selfRef, .iref + a[href].internal {
+  color: var(--text-color);
 }
 a[href]:hover {
   text-decoration: underline;
@@ -201,15 +427,31 @@ a[href]:hover {
 a[href].selfRef:hover {
   background-color: var(--highlight-color);
 }
+a.xref:is(.cite, .auto), :is(#status-of-memo, #copyright) a {
+  white-space: nowrap;
+}
 
 /* Figures */
 tt, code, pre {
   background-color: var(--highlight-color);
-  font: 14px/22px 'Oxygen Mono', monospace;
+  font: 14px/22px var(--font-mono);
+}
+tt, code {
+  /* changing the font for inline elements leads to different ascender
+     and descender heights; as we want to retain baseline alignment,
+     remove leading to avoid altering the final height of lines
+     note: this fails if these blocks take an entire line,
+     a different solution would be great */
+  line-height: 0;
+}
+:is(h1, h2, h3, h4, h5, h6) :is(tt, code) {
+  font-size: 84%;
 }
 pre {
   border: 1px solid var(--line-color);
-  line-height: 17px;
+  font-size: 13.5px;
+  line-height: 16px;
+  letter-spacing: -0.2px;
   margin: 5px;
   padding: 5px;
 }
@@ -218,6 +460,7 @@ img {
 }
 figure {
   margin: 0.5em 0;
+  padding: 0;
 }
 figure blockquote {
   margin: 0.8em 0.4em 0.4em;
@@ -228,24 +471,38 @@ figcaption, caption {
   text-align: left;
 }
 @media screen {
-  pre {
+  /* Auto-collapse boilerplate. */
+  :is(#status-of-memo, #copyright) p {
+    margin: -2px 0;
+    max-height: 0;
+    transition: max-height 2s ease, margin 0.5s ease 0.5s;
+    overflow: hidden;
+  }
+  :is(#status-of-memo, #copyright):hover p,
+  :is(#status-of-memo, #copyright) h2:target ~ p {
+    margin: 0.5em 0;
+    max-height: 500px;
+    overflow: auto;
+  }
+  pre, svg {
     display: inline-block;
     overflow-x: auto;
+  }
+  pre {
     max-width: 100%;
     width: calc(100% - 22px - 1em);
+  }
+  svg {
+    max-width: calc(100% - 22px - 1em);
   }
   figure pre {
     display: block;
     width: calc(100% - 25px);
   }
-  pre + .pilcrow {
+  :is(pre, svg) + .pilcrow {
     display: inline-block;
     vertical-align: text-bottom;
     padding-bottom: 8px;
-  }
-  table {
-    display: inline-block;
-    overflow-x: auto;
   }
 }
 
@@ -256,9 +513,6 @@ aside, blockquote {
   font-style: italic;
 }
 blockquote {
-  background-color: var(--highlight-color);
-  border: 1px solid var(--line-color);
-  border-radius: 3px;
   margin: 1em 0;
 }
 cite {
@@ -269,58 +523,65 @@ cite {
 
 /* tables */
 table {
-  width: 100%;
+  max-width: 100%;
   margin: 0 0 1em;
   border-collapse: collapse;
+}
+table.right {
+  margin-left: auto;
+}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+table.left {
+  margin-right: auto;
+}
+thead, tbody {
   border: 1px solid var(--line-color);
 }
 th, td {
   text-align: left;
   vertical-align: top;
-  padding: 0.5em 0.75em;
+  padding: 5px 10px;
 }
 th {
-  text-align: left;
-  background-color: #eee;
+  background-color: var(--line-color);
 }
-tr:nth-child(2n) > td {
+:is(tr:nth-child(2n), thead+tbody > tr:nth-child(2n+1)) > td {
   background-color: var(--background-color);
 }
-tr:nth-child(2n+1) > td {
+:is(tr:nth-child(2n+1), thead+tbody > tr:nth-child(2n)) > td {
   background-color: var(--highlight-color);
-}
-thead+tbody tr:nth-child(2n) > td {
-  background-color: var(--highlight-color);
-}
-thead+tbody tr:nth-child(2n+1) > td {
-  background-color: var(--background-color);
 }
 table caption {
-  font-style: italic;
-  margin: 0.3em 0;
-  padding: 0;
-  text-align: left;
+  margin: 0;
+  padding: 3px 0 3px 1em;
 }
 table p {
-  /* XXX to avoid bottom margin on table row signifiers. If paragraphs should
-     be allowed within tables more generally, it would be far better to select on a class. */
   margin: 0;
 }
 
 /* pilcrow */
 a.pilcrow {
   margin-left: 3px;
-  visibility: hidden;
+  opacity: 0.2;
   user-select: none;
 }
-a.pilcrow[href] { color: #ddd; }
+a.pilcrow[href] { color: var(--pilcrow-weak); }
 a.pilcrow[href]:hover { text-decoration: none; }
-@media screen {
+@media not print {
   :hover > a.pilcrow {
-    visibility: visible;
+    opacity: 1;
   }
-  a.pilcrow:hover {
+  a.pilcrow[href]:hover {
+    color: var(--pilcrow-strong);
     background-color: transparent;
+  }
+}
+@media print {
+  a.pilcrow {
+    display: none;
   }
 }
 
@@ -331,10 +592,15 @@ hr {
 }
 .bcp14 {
   font-variant: small-caps;
+  font-weight: 600;
+  font-size: var(--small-font-size);
 }
-
 .role {
   font-variant: all-small-caps;
+}
+sub, sup {
+  line-height: 1;
+  font-size: 80%;
 }
 
 /* info block */
@@ -342,17 +608,18 @@ hr {
   margin: 0;
   font-size: var(--small-font-size);
   line-height: 18px;
-  --identifier-width: 8em;
+  --identifier-width: 15ch;
 }
 #identifiers dt {
   width: var(--identifier-width);
-  margin: 0;
+  min-width: var(--identifier-width);
   clear: left;
   float: left;
   text-align: right;
 }
 #identifiers dd {
-  margin: 0 0 0 calc(1em + var(--identifier-width));
+  margin: 0;
+  margin-left: calc(1em + var(--identifier-width)) !important;
   min-width: 5em;
 }
 #identifiers .authors .author {
@@ -393,14 +660,22 @@ hr {
   padding-left: 1.2em;
   text-indent: -1.2em;
 }
+#toc a.xref {
+  white-space: normal;
+}
 /* references */
 .references dt {
   text-align: right;
   font-weight: bold;
   min-width: 7em;
 }
+.references dt:target::before {
+  content: "⇒";
+  width: 15px;
+  margin: 0 10px 0 -25px;
+}
 .references dd {
-  margin-left: 8em;
+  margin-left: 8em !important;
   overflow: auto;
 }
 
@@ -413,36 +688,8 @@ hr {
 }
 
 /* index */
-.index ul {
-  margin: 0 0 0 1em;
-  padding: 0;
-  list-style: none;
-}
-.index ul ul {
-  margin: 0;
-}
-.index li {
-  margin: 0;
-  text-indent: -2em;
-  padding-left: 2em;
-  padding-bottom: 5px;
-}
-.indexIndex {
-  margin: 0.5em 0 1em;
-}
-.index a {
-  font-weight: 700;
-}
-/* make the index two-column on all but the smallest screens */
-@media (min-width: 600px) {
-  .index ul {
-    column-count: 2;
-    column-gap: 20px;
-  }
-  .index ul ul {
-    column-count: 1;
-    column-gap: 0;
-  }
+#rfc\.index\.index + ul {
+  margin-left: 0;
 }
 
 /* authors */
@@ -469,39 +716,23 @@ hr.addr {
   color: #ddd;
   max-width: calc(100% - 16px);
 }
-@media (min-width: 600px) {
-  #authors-addresses {
-    display: relative;
-    padding: 32px 0 0;
+@media (min-width: 500px) {
+  #authors-addresses > section {
     column-count: 2;
     column-gap: 20px;
   }
-  #name-authors-addresses {
-    position: absolute;
-    top: 0px;
+  #authors-addresses > section > h2 {
     column-span: all;
   }
   /* hack for break-inside: avoid-column */
   #authors-addresses address {
     display: inline-block;
+    break-inside: avoid-column;
   }
 }
 
-/* temporary notes */
-.rfcEditorRemove::before {
-  position: absolute;
-  top: 0.2em;
-  right: 0.2em;
-  padding: 0.2em;
-  content: "The RFC Editor will remove this note";
-  color: #b76427;
-  background-color: rgba(249, 232, 105, 0.3);
-}
-.rfcEditorRemove {
-  position: relative;
-  padding-top: 1.8em;
-  background-color: rgba(249, 232, 105, 0.3);
-  border-radius: 3px;
+.rfcEditorRemove p:first-of-type {
+  font-style: italic;
 }
 .cref {
   background-color: rgba(249, 232, 105, 0.3);
@@ -511,7 +742,7 @@ hr.addr {
   font-style: italic;
 }
 /* alternative layout for smaller screens */
-@media screen and (max-width: 953px) {
+@media screen and (max-width: 929px) {
   #toc {
     position: fixed;
     z-index: 2;
@@ -520,7 +751,7 @@ hr.addr {
     padding: 0;
     margin: 0;
     border-bottom: 1px solid #ccc;
-    opacity: 0.9; /* TODO fix when Henrik takes the patch. */
+    opacity: 0.6;
   }
   #toc.active {
       opacity: 1;
@@ -577,9 +808,10 @@ hr.addr {
 }
 
 /* alternative layout for wide screens */
-@media screen and (min-width: 954px) {
+@media screen and (min-width: 930px) {
   body {
-    padding-right: 380px;
+    padding-right: 360px;
+    padding-right: calc(min(180px + 20%, 500px));
   }
   #toc {
     position: fixed;
@@ -611,7 +843,7 @@ hr.addr {
     margin: 0 0 0 4px;
     font-size: var(--small-font-size);
   }
-  #toc ul p, #toc ul li {
+  #toc ul :is(p, li) {
     margin: 2px 0;
     line-height: 22px;
   }
@@ -710,27 +942,14 @@ a.toplink {
   margin: 8px 0.5em 0;
 }
 
-/* Fix the dl styling to match the RFC 7992 attributes */
-dl > dt,
-dl.dlParallel > dt {
-  float: left;
-  margin-right: 1em;
-}
-dl.dlNewline > dt {
-  float: none;
-}
-
 /* Provide styling for table cell text alignment */
-table td.text-left,
-table th.text-left {
+table .text-left {
   text-align: left;
 }
-table td.text-center,
-table th.text-center {
+table .text-center {
   text-align: center;
 }
-table td.text-right,
-table th.text-right {
+table .text-right {
   text-align: right;
 }
 
@@ -776,21 +995,6 @@ address div.right {
   text-align: right;
 }
 
-/* Provide table alignment support.  We can't use the alignX classes above
-   since they do unwanted things with caption and other styling. */
-table.right {
- margin-left: auto;
- margin-right: 0;
-}
-table.center {
- margin-left: auto;
- margin-right: auto;
-}
-table.left {
- margin-left: 0;
- margin-right: auto;
-}
-
 /* Give the table caption label the same styling as the figcaption */
 
 @media print {
@@ -812,26 +1016,48 @@ table.left {
   }
 
 }
-/* Tweak the bcp14 keyword presentation */
-.bcp14 {
-  font-variant: small-caps;
-  font-weight: bold;
-  font-size: 0.9em;
+
+/* Dark mode. */
+@media (prefers-color-scheme: dark) {
+:root {
+  --background-color: #121212;
+  --text-color: #f0f0f0;
+  --title-color: #fff;
+  --link-color: #4da4f0;
+  --highlight-color: #282828;
+  --line-color: #444;
+  --pilcrow-weak: #444;
+  --pilcrow-strong: #666;
+  scrollbar-color: #777 #333;
+}
+}
+
+/* SVG Trick: a prefix match works because only black and white are allowed */
+svg :is([stroke="black"], [stroke^="#000"]) {
+  stroke: var(--text-color);
+}
+svg :is([stroke="white"], [stroke^="#fff"]) {
+  stroke: var(--background-color);
+}
+svg :is([fill="black"], [fill^="#000"], :not([fill])) {
+  fill: var(--text-color);
+}
+svg :is([fill="white"], [fill^="#fff"]) {
+  fill: var(--background-color);
 }
 </style>
-<link href="rfc-local.css" rel="stylesheet" type="text/css">
+
 </head>
-<body>
-<script src="metadata.min.js"></script>
+<body class="xml2rfc">
 <table class="ears">
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">ALTO using BGP-LS</td>
-<td class="right">March 2020</td>
+<td class="right">April 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Zhang, et al.</td>
-<td class="center">Expires 10 September 2020</td>
+<td class="center">Expires 27 October 2023</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -844,12 +1070,12 @@ table.left {
 <dd class="internet-draft">draft-zhang-alto-bgp-ls-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-03-09" class="published">9 March 2020</time>
+<time datetime="2023-04-25" class="published">25 April 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2020-09-10">10 September 2020</time></dd>
+<dd class="expires"><time datetime="2023-10-27">27 October 2023</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -861,7 +1087,7 @@ table.left {
 <div class="org">Sichuan University</div>
 </div>
 <div class="author">
-      <div class="author-name">LM. Contreras</div>
+      <div class="author-name">LM Contreras</div>
 <div class="org">Telefonica</div>
 </div>
 <div class="author">
@@ -892,8 +1118,11 @@ extension.<a href="#section-abstract-1" class="pilcrow">¶</a></p>
 <a href="#name-requirements-language" class="section-name selfRef">Requirements Language</a>
       </h2>
 <p id="section-note.1-1">The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
-"SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]</span>.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
+"SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this
+document are to be interpreted as described in BCP 14 <span>[<a href="#RFC2119" class="cite xref">RFC2119</a>]</span> <span>[<a href="#RFC8174" class="cite xref">RFC8174</a>]</span>
+when, and only when, they appear in all capitals, as shown here. When the words
+appear in lower case, they are to be interpreted with their natural language
+meanings.<a href="#section-note.1-1" class="pilcrow">¶</a></p>
 </section>
 <div id="status-of-memo">
 <section id="section-boilerplate.1">
@@ -914,7 +1143,7 @@ interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]<
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 10 September 2020.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 27 October 2023.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -923,7 +1152,7 @@ interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]<
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2020 IETF Trust and the persons identified as the
+            Copyright (c) 2023 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -932,9 +1161,9 @@ interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]<
             publication of this document. Please review these documents
             carefully, as they describe your rights and restrictions with
             respect to this document. Code Components extracted from this
-            document must include Simplified BSD License text as described in
+            document must include Revised BSD License text as described in
             Section 4.e of the Trust Legal Provisions and are provided without
-            warranty as described in the Simplified BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
+            warranty as described in the Revised BSD License.<a href="#section-boilerplate.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="toc">
@@ -942,92 +1171,95 @@ interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]<
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.1">
-            <p id="section-toc.1-1.1.1"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
+<nav class="toc"><ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.1">
+            <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="auto internal xref">1</a>.  <a href="#name-introduction" class="internal xref">Introduction</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.2">
-            <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-background" class="xref">Background</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.2.2.1">
-                <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-alto-inter-domain-deploymen" class="xref">ALTO Inter-domain Deployment Problem</a><a href="#section-toc.1-1.2.2.1.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.2">
+            <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="auto internal xref">2</a>.  <a href="#name-new-problem-statement-and-w" class="internal xref">New Problem Statement and Working Items</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.2.2.2">
-                <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-bgp-ls-background-and-benef" class="xref">BGP-LS Background and Benefits for ALTO</a><a href="#section-toc.1-1.2.2.2.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3">
+            <p id="section-toc.1-1.3.1"><a href="#section-3" class="auto internal xref">3</a>.  <a href="#name-background" class="internal xref">Background</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.1">
+                <p id="section-toc.1-1.3.2.1.1" class="keepWithNext"><a href="#section-3.1" class="auto internal xref">3.1</a>.  <a href="#name-alto-inter-domain-deploymen" class="internal xref">ALTO Inter-domain Deployment Problem</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.2.2.3">
-                <p id="section-toc.1-1.2.2.3.1"><a href="#section-2.3" class="xref">2.3</a>.  <a href="#name-alto-deployment-problem-usi" class="xref">ALTO Deployment Problem using BGP-LS</a><a href="#section-toc.1-1.2.2.3.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.2">
+                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="auto internal xref">3.2</a>.  <a href="#name-bgp-ls-background-and-benef" class="internal xref">BGP-LS Background and Benefits for ALTO</a></p>
 </li>
-</ul>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.3.2.3">
+                <p id="section-toc.1-1.3.2.3.1"><a href="#section-3.3" class="auto internal xref">3.3</a>.  <a href="#name-alto-deployment-problem-usi" class="internal xref">ALTO Deployment Problem using BGP-LS</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.3">
-            <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-requirements-for-deploying-" class="xref">Requirements for Deploying ALTO in the Inter-domain Scenario using BGP-LS</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.3.2.1">
-                <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-basic-requirements" class="xref">Basic Requirements</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
+            </ul>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.3.2.2">
-                <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-bgp-ls-specific-requirement" class="xref">BGP-LS specific Requirements</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4">
+            <p id="section-toc.1-1.4.1"><a href="#section-4" class="auto internal xref">4</a>.  <a href="#name-requirements-for-deploying-" class="internal xref">Requirements for Deploying ALTO in the Inter-domain Scenario using BGP-LS</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.1">
+                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="auto internal xref">4.1</a>.  <a href="#name-basic-requirements" class="internal xref">Basic Requirements</a></p>
 </li>
-</ul>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.4.2.2">
+                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="auto internal xref">4.2</a>.  <a href="#name-bgp-ls-specific-requirement" class="internal xref">BGP-LS specific Requirements</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.4">
-            <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-alto-deployment-considerati" class="xref">ALTO Deployment Considerations using BGP-LS</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-provisioning-of-topology-in" class="xref">Provisioning of Topology Information</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
+            </ul>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-provisioning-of-routing-inf" class="xref">Provisioning of Routing Information</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="auto internal xref">5</a>.  <a href="#name-alto-deployment-considerati" class="internal xref">ALTO Deployment Considerations using BGP-LS</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.1">
+                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="auto internal xref">5.1</a>.  <a href="#name-provisioning-of-topology-in" class="internal xref">Provisioning of Topology Information</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-provisioning-of-performance" class="xref">Provisioning of Performance Metric Information</a><a href="#section-toc.1-1.4.2.3.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.2">
+                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="auto internal xref">5.2</a>.  <a href="#name-provisioning-of-routing-inf" class="internal xref">Provisioning of Routing Information</a></p>
 </li>
-</ul>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.5.2.3">
+                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="auto internal xref">5.3</a>.  <a href="#name-provisioning-of-performance" class="internal xref">Provisioning of Performance Metric Information</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-configuration-interfaces-of" class="xref">Configuration Interfaces of Map Calculation</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-configuration-interface-of-" class="xref">Configuration Interface of Network Map Calculation</a><a href="#section-toc.1-1.5.2.1.1" class="pilcrow">¶</a></p>
+            </ul>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-configuration-interface-of-c" class="xref">Configuration Interface of Cost Map Calculation</a><a href="#section-toc.1-1.5.2.2.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="auto internal xref">6</a>.  <a href="#name-configuration-interfaces-of" class="internal xref">Configuration Interfaces of Map Calculation</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="auto internal xref">6.1</a>.  <a href="#name-configuration-interface-of-" class="internal xref">Configuration Interface of Network Map Calculation</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-configuration-examples" class="xref">Configuration Examples</a><a href="#section-toc.1-1.5.2.3.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="auto internal xref">6.2</a>.  <a href="#name-configuration-interface-of-c" class="internal xref">Configuration Interface of Cost Map Calculation</a></p>
 </li>
-</ul>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="auto internal xref">6.3</a>.  <a href="#name-configuration-examples" class="internal xref">Configuration Examples</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-test-scenarios" class="xref">Test Scenarios</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-test-environment-setup" class="xref">Test Environment Setup</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
+            </ul>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-test-approach" class="xref">Test Approach</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="auto internal xref">7</a>.  <a href="#name-test-scenarios" class="internal xref">Test Scenarios</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="auto internal xref">7.1</a>.  <a href="#name-test-environment-setup" class="internal xref">Test Environment Setup</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-test-results" class="xref">Test Results</a><a href="#section-toc.1-1.6.2.3.1" class="pilcrow">¶</a></p>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="auto internal xref">7.2</a>.  <a href="#name-test-approach" class="internal xref">Test Approach</a></p>
 </li>
-</ul>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="auto internal xref">7.3</a>.  <a href="#name-test-results" class="internal xref">Test Results</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty">
-<li class="toc ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
+            </ul>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="auto internal xref">8</a>.  <a href="#name-references" class="internal xref">References</a></p>
+<ul class="compact toc ulBare ulEmpty">
+<li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="auto internal xref">8.1</a>.  <a href="#name-normative-references" class="internal xref">Normative References</a></p>
 </li>
-</ul>
+              <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="auto internal xref">8.2</a>.  <a href="#name-informative-references" class="internal xref">Informative References</a></p>
 </li>
-<li class="toc ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+            </ul>
 </li>
-</ul>
+          <li class="compact toc ulBare ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#appendix-A" class="auto internal xref"></a><a href="#name-authors-addresses" class="internal xref">Authors' Addresses</a></p>
+</li>
+        </ul>
 </nav>
 </section>
 </div>
@@ -1037,21 +1269,21 @@ interpreted as described in <span>[<a href="#RFC2119" class="xref">RFC2119</a>]<
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
 <p id="section-1-1">The major component of the Application-Layer Traffic Optimization (ALTO)
-<span>[<a href="#RFC7285" class="xref">RFC7285</a>]</span> deployment is the network information collection. <span>[<a href="#RFC7971" class="xref">RFC7971</a>]</span>
+<span>[<a href="#RFC7285" class="cite xref">RFC7285</a>]</span> deployment is the network information collection. <span>[<a href="#RFC7971" class="cite xref">RFC7971</a>]</span>
 discussed multiple options to collect the network information from the
 inter-domain networks.<a href="#section-1-1" class="pilcrow">¶</a></p>
 <p id="section-1-2">To collection the related network information for ALTO, the following
 high-level questions should be considered:<a href="#section-1-2" class="pilcrow">¶</a></p>
-<ul>
-<li id="section-1-3.1">Can the ALTO service realistically discover that information?<a href="#section-1-3.1" class="pilcrow">¶</a>
+<ul class="normal">
+<li class="normal" id="section-1-3.1">Can the ALTO service realistically discover that information?<a href="#section-1-3.1" class="pilcrow">¶</a>
 </li>
-<li id="section-1-3.2">Is the distribution of that information allowed by the operators of that
+        <li class="normal" id="section-1-3.2">Is the distribution of that information allowed by the operators of that
 service?<a href="#section-1-3.2" class="pilcrow">¶</a>
 </li>
-<li id="section-1-3.3">Is it information that a client cannot find easily some other way?<a href="#section-1-3.3" class="pilcrow">¶</a>
+        <li class="normal" id="section-1-3.3">Is it information that a client cannot find easily some other way?<a href="#section-1-3.3" class="pilcrow">¶</a>
 </li>
-</ul>
-<p id="section-1-4">The Border Gateway Protocol - Link State (BGP-LS) extension <span>[<a href="#RFC7752" class="xref">RFC7752</a>]</span> is
+      </ul>
+<p id="section-1-4">The Border Gateway Protocol - Link State (BGP-LS) extension <span>[<a href="#RFC7752" class="cite xref">RFC7752</a>]</span> is
 one of the popular options and has been deployed in many Autonomous Systems
 (ASes) in recent years [TODO: Need some reference].<a href="#section-1-4" class="pilcrow">¶</a></p>
 <p id="section-1-5">BGP-LS enables ALTO server to provide underlay inter-domain topology
@@ -1064,75 +1296,104 @@ considerations.<a href="#section-1-7" class="pilcrow">¶</a></p>
 deployment.<a href="#section-1-8" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="background">
+<div id="new-problem-statement-and-working-items">
 <section id="section-2">
+      <h2 id="name-new-problem-statement-and-w">
+<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-new-problem-statement-and-w" class="section-name selfRef">New Problem Statement and Working Items</a>
+      </h2>
+<p id="section-2-1">This document was initially written to summarize ALTO deployment
+consideration using BGP-LS. However, authors are finding new interesting
+practical problems when pushing the deployment to large-scale ISP networks.<a href="#section-2-1" class="pilcrow">¶</a></p>
+<p id="section-2-2">Authors identify two problems:<a href="#section-2-2" class="pilcrow">¶</a></p>
+<p id="section-2-3">Problem 1: how to efficiently obtain fine-grained global ALTO information
+from multiple networks?<a href="#section-2-3" class="pilcrow">¶</a></p>
+<p id="section-2-4">Problem 2: how to efficiently reconstruct and disseminate the ALTO
+information upon dynamics?<a href="#section-2-4" class="pilcrow">¶</a></p>
+<p id="section-2-5">Considering the scale of the ISP carrier networks and the frequency of
+network dynamicity, the previous design cannot survive. We have to target a
+systemtic design to support (1) distributed information collection, and
+(2) calculation and incremental information recomputation.<a href="#section-2-5" class="pilcrow">¶</a></p>
+<p id="section-2-6">Thus, authors propose a hierarchical architecture to deploy ALTO servers. To
+make the deployment in different small networks compatible with each other,
+the interfaces to allow interoperations between different ALTO servers are
+required. Although we can design and implement those interfaces outside the
+scope of ALTO, we believe making ALTO provide this capability by itself can
+be a more coherent approach and also have more potential benefits.<a href="#section-2-6" class="pilcrow">¶</a></p>
+<p id="section-2-7">We are still heavily working on the initial specification. No more details
+are added in the current document. But we have already done a paper
+submission to talk about the initial design. For people interested in this
+work, please feel free to contact us.<a href="#section-2-7" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="background">
+<section id="section-3">
       <h2 id="name-background">
-<a href="#section-2" class="section-number selfRef">2. </a><a href="#name-background" class="section-name selfRef">Background</a>
+<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-background" class="section-name selfRef">Background</a>
       </h2>
 <div id="alto-inter-domain-deployment-problem">
-<section id="section-2.1">
+<section id="section-3.1">
         <h3 id="name-alto-inter-domain-deploymen">
-<a href="#section-2.1" class="section-number selfRef">2.1. </a><a href="#name-alto-inter-domain-deploymen" class="section-name selfRef">ALTO Inter-domain Deployment Problem</a>
+<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-alto-inter-domain-deploymen" class="section-name selfRef">ALTO Inter-domain Deployment Problem</a>
         </h3>
-<p id="section-2.1-1"><span>[<a href="#RFC7971" class="xref">RFC7971</a>]</span> discusses considerations of ALTO deployment in different network
+<p id="section-3.1-1"><span>[<a href="#RFC7971" class="cite xref">RFC7971</a>]</span> discusses considerations of ALTO deployment in different network
 scenarios. The inter-domain network is the most common scenario to deploy
-ALTO.<a href="#section-2.1-1" class="pilcrow">¶</a></p>
-<p id="section-2.1-2">In practice, the following approaches are used to collect information from
-the network:<a href="#section-2.1-2" class="pilcrow">¶</a></p>
-<ul>
-<li id="section-2.1-3.1">Interior Gateway Protocols (IGPs, e.g., OSPF, IS-IS): intra-domain topology, link weights<a href="#section-2.1-3.1" class="pilcrow">¶</a>
+ALTO.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
+<p id="section-3.1-2">In practice, the following approaches are used to collect information from
+the network:<a href="#section-3.1-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.1-3.1">Interior Gateway Protocols (IGPs, e.g., OSPF, IS-IS): intra-domain topology, link weights<a href="#section-3.1-3.1" class="pilcrow">¶</a>
 </li>
-<li id="section-2.1-3.2">Border Gateway Protocol (BGP): inter-domain topology, prefixes, AS numbers, AS distances, or other BGP metrics<a href="#section-2.1-3.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-3.2">Border Gateway Protocol (BGP): inter-domain topology, prefixes, AS numbers, AS distances, or other BGP metrics<a href="#section-3.1-3.2" class="pilcrow">¶</a>
 </li>
-<li id="section-2.1-3.3">Network Management Protocols (NMPs, e.g., SNMP, Netconf): latency, utilization, bandwidth<a href="#section-2.1-3.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.1-3.3">Network Management Protocols (NMPs, e.g., SNMP, Netconf): latency, utilization, bandwidth<a href="#section-3.1-3.3" class="pilcrow">¶</a>
 </li>
-</ul>
+        </ul>
 </section>
 </div>
 <div id="bgp-ls-background-and-benefits-for-alto">
-<section id="section-2.2">
+<section id="section-3.2">
         <h3 id="name-bgp-ls-background-and-benef">
-<a href="#section-2.2" class="section-number selfRef">2.2. </a><a href="#name-bgp-ls-background-and-benef" class="section-name selfRef">BGP-LS Background and Benefits for ALTO</a>
+<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-bgp-ls-background-and-benef" class="section-name selfRef">BGP-LS Background and Benefits for ALTO</a>
         </h3>
-<p id="section-2.2-1">BGP-LS <span>[<a href="#RFC7752" class="xref">RFC7752</a>]</span> is designed to allow a BGP speaker to advertise the link state
+<p id="section-3.2-1">BGP-LS <span>[<a href="#RFC7752" class="cite xref">RFC7752</a>]</span> is designed to allow a BGP speaker to advertise the link state
 database (LSDB) or traffic engineering database (TED) of its connected IGP
-area.<a href="#section-2.2-1" class="pilcrow">¶</a></p>
-<p id="section-2.2-2">BGP-LS defines a new address family, link state, in the BGPv4 framework <span>[<a href="#RFC4271" class="xref">RFC4271</a>]</span>.<a href="#section-2.2-2" class="pilcrow">¶</a></p>
-<p id="section-2.2-3">Using BGP-LS, the ALTO server can communicate to only BGP speakers to collect
-all those information.<a href="#section-2.2-3" class="pilcrow">¶</a></p>
+area.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
+<p id="section-3.2-2">BGP-LS defines a new address family, link state, in the BGPv4 framework <span>[<a href="#RFC4271" class="cite xref">RFC4271</a>]</span>.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
+<p id="section-3.2-3">Using BGP-LS, the ALTO server can communicate to only BGP speakers to collect
+all those information.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="alto-deployment-problem-using-bgp-ls">
-<section id="section-2.3">
+<section id="section-3.3">
         <h3 id="name-alto-deployment-problem-usi">
-<a href="#section-2.3" class="section-number selfRef">2.3. </a><a href="#name-alto-deployment-problem-usi" class="section-name selfRef">ALTO Deployment Problem using BGP-LS</a>
+<a href="#section-3.3" class="section-number selfRef">3.3. </a><a href="#name-alto-deployment-problem-usi" class="section-name selfRef">ALTO Deployment Problem using BGP-LS</a>
         </h3>
-<p id="section-2.3-1">A simple deployment solution is to connect the ALTO server as a BGP reflector
+<p id="section-3.3-1">A simple deployment solution is to connect the ALTO server as a BGP reflector
 client of every BGP speakers in the network. However, this solution is
 expensive and redundant. And because of the BGP updates, the ALTO server
 could receive a lot of inconsistent redundant informaiton. To avoid the
 redundancy and inconsistency of the collected information, a deployment
-solution should be minimal.<a href="#section-2.3-1" class="pilcrow">¶</a></p>
-<p id="section-2.3-2">To understand what is a minimal solution to deploy ALTO using BGP-LS, the
-following questions are raised:<a href="#section-2.3-2" class="pilcrow">¶</a></p>
-<ul>
-<li id="section-2.3-3.1">Is it necessary to connect the ALTO server to every AS within a BGP session?<a href="#section-2.3-3.1" class="pilcrow">¶</a>
+solution should be minimal.<a href="#section-3.3-1" class="pilcrow">¶</a></p>
+<p id="section-3.3-2">To understand what is a minimal solution to deploy ALTO using BGP-LS, the
+following questions are raised:<a href="#section-3.3-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.3-3.1">Is it necessary to connect the ALTO server to every AS within a BGP session?<a href="#section-3.3-3.1" class="pilcrow">¶</a>
 </li>
-<li id="section-2.3-3.2">Does the session between the ALTO server and each AS have to enable BGP-LS?<a href="#section-2.3-3.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.3-3.2">Does the session between the ALTO server and each AS have to enable BGP-LS?<a href="#section-3.3-3.2" class="pilcrow">¶</a>
 </li>
-<li id="section-2.3-3.3">If using BGP-LS, can the number of necessary BGP sessions be reduced?<a href="#section-2.3-3.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.3-3.3">If using BGP-LS, can the number of necessary BGP sessions be reduced?<a href="#section-3.3-3.3" class="pilcrow">¶</a>
 </li>
-</ul>
-<p id="section-2.3-4">The following example shows a minimal deployment in a simple example topology.<a href="#section-2.3-4" class="pilcrow">¶</a></p>
-<p id="section-2.3-5">Consider the following AS-level topology as an example. Assuming all the BGP
+        </ul>
+<p id="section-3.3-4">The following example shows a minimal deployment in a simple example topology.<a href="#section-3.3-4" class="pilcrow">¶</a></p>
+<p id="section-3.3-5">Consider the following AS-level topology as an example. Assuming all the BGP
 sessions between ASes have enabled BGP-LS, the BGP speaker on AS B can
 received the IGP topologies from all the three ASes. Thus, to make sure the
 ALTO server collect all the inter-domain and intra-domain topology
 information, the minimal deployment could be to set up the the ALTO server as
-a BGP reflector of the BGP speaker on AS B.<a href="#section-2.3-5" class="pilcrow">¶</a></p>
+a BGP reflector of the BGP speaker on AS B.<a href="#section-3.3-5" class="pilcrow">¶</a></p>
 <span id="name-example-as-level-topology"></span><div id="fig-topo">
 <figure id="figure-1">
-          <div class="artwork art-text alignLeft" id="section-2.3-6.1">
+          <div class="alignLeft art-text artwork" id="section-3.3-6.1">
 <pre>
 +--------+   +--------+   +---------+
 | AS A   |---| AS B   |---| AS C    |
@@ -1149,117 +1410,117 @@ a BGP reflector of the BGP speaker on AS B.<a href="#section-2.3-5" class="pilcr
 <a href="#name-example-as-level-topology" class="selfRef">Example AS-level Topology</a>
           </figcaption></figure>
 </div>
-<p id="section-2.3-7">However, it is not enough for collecting the routing information. As the BGP
+<p id="section-3.3-7">However, it is not enough for collecting the routing information. As the BGP
 is a destination-based routing protocol, AS B could not receive the routing
 information between endpoints from AS A and AS C. To get the missing routing
 information, the ALTO server should also connect read the BGP RIB of AS A or
-AS C at least.<a href="#section-2.3-7" class="pilcrow">¶</a></p>
-<p id="section-2.3-8">As the result, the minimal solution is to establish a BGP session to AS B
-with BGP-LS and another BGP session to AS A (or AS C) without BGP-LS.<a href="#section-2.3-8" class="pilcrow">¶</a></p>
-<p id="section-2.3-9">The following part of this document will discuss how to achieve the minimal
+AS C at least.<a href="#section-3.3-7" class="pilcrow">¶</a></p>
+<p id="section-3.3-8">As the result, the minimal solution is to establish a BGP session to AS B
+with BGP-LS and another BGP session to AS A (or AS C) without BGP-LS.<a href="#section-3.3-8" class="pilcrow">¶</a></p>
+<p id="section-3.3-9">The following part of this document will discuss how to achieve the minimal
 ALTO deployment using BPG-LS in detail. Specifically, two questions are
-required to be answered:<a href="#section-2.3-9" class="pilcrow">¶</a></p>
-<ul>
-<li id="section-2.3-10.1">Which BGP speakers are required to be connected to the ALTO server?<a href="#section-2.3-10.1" class="pilcrow">¶</a>
+required to be answered:<a href="#section-3.3-9" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-3.3-10.1">Which BGP speakers are required to be connected to the ALTO server?<a href="#section-3.3-10.1" class="pilcrow">¶</a>
 </li>
-<li id="section-2.3-10.2">Which BGP sessions are required to enable BGP-LS?<a href="#section-2.3-10.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-3.3-10.2">Which BGP sessions are required to enable BGP-LS?<a href="#section-3.3-10.2" class="pilcrow">¶</a>
 </li>
-</ul>
+        </ul>
 </section>
 </div>
 </section>
 </div>
 <div id="requirements-for-deploying-alto-in-the-inter-domain-scenario-using-bgp-ls">
-<section id="section-3">
+<section id="section-4">
       <h2 id="name-requirements-for-deploying-">
-<a href="#section-3" class="section-number selfRef">3. </a><a href="#name-requirements-for-deploying-" class="section-name selfRef">Requirements for Deploying ALTO in the Inter-domain Scenario using BGP-LS</a>
+<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-requirements-for-deploying-" class="section-name selfRef">Requirements for Deploying ALTO in the Inter-domain Scenario using BGP-LS</a>
       </h2>
 <div id="basic-requirements">
-<section id="section-3.1">
+<section id="section-4.1">
         <h3 id="name-basic-requirements">
-<a href="#section-3.1" class="section-number selfRef">3.1. </a><a href="#name-basic-requirements" class="section-name selfRef">Basic Requirements</a>
+<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-basic-requirements" class="section-name selfRef">Basic Requirements</a>
         </h3>
-<p id="section-3.1-1">The following basic requirements are required by ALTO inter-domain deployment in any case.<a href="#section-3.1-1" class="pilcrow">¶</a></p>
-<p id="section-3.1-2">Req 1: The ALTO server MUST be able to collect topology information from
-multiple IGP areas.<a href="#section-3.1-2" class="pilcrow">¶</a></p>
-<p id="section-3.1-3">Req 2: The ALTO server MUST be able to collect routing information for any pairs of endpoints.<a href="#section-3.1-3" class="pilcrow">¶</a></p>
-<p id="section-3.1-4">Req 3: The ALTO server MUST be able to collect performance metrics across routes.<a href="#section-3.1-4" class="pilcrow">¶</a></p>
+<p id="section-4.1-1">The following basic requirements are required by ALTO inter-domain deployment in any case.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<p id="section-4.1-2">Req 1: The ALTO server MUST be able to collect topology information from
+multiple IGP areas.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<p id="section-4.1-3">Req 2: The ALTO server MUST be able to collect routing information for any pairs of endpoints.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+<p id="section-4.1-4">Req 3: The ALTO server MUST be able to collect performance metrics across routes.<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="bgp-ls-specific-requirements">
-<section id="section-3.2">
+<section id="section-4.2">
         <h3 id="name-bgp-ls-specific-requirement">
-<a href="#section-3.2" class="section-number selfRef">3.2. </a><a href="#name-bgp-ls-specific-requirement" class="section-name selfRef">BGP-LS specific Requirements</a>
+<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-bgp-ls-specific-requirement" class="section-name selfRef">BGP-LS specific Requirements</a>
         </h3>
-<p id="section-3.2-1">The following additional requirements are required by ALTO deployment when using BGP-LS.<a href="#section-3.2-1" class="pilcrow">¶</a></p>
-<p id="section-3.2-2">Req 4: The ALTO server SHOULD only communicate with necessary BGP speakers.<a href="#section-3.2-2" class="pilcrow">¶</a></p>
-<p id="section-3.2-3">Req 5: The ALTO server SHOULD only enable BGP-LS advertisement in necessary BGP sessions between BGP speakers.<a href="#section-3.2-3" class="pilcrow">¶</a></p>
+<p id="section-4.2-1">The following additional requirements are required by ALTO deployment when using BGP-LS.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<p id="section-4.2-2">Req 4: The ALTO server SHOULD only communicate with necessary BGP speakers.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
+<p id="section-4.2-3">Req 5: The ALTO server SHOULD only enable BGP-LS advertisement in necessary BGP sessions between BGP speakers.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="alto-deployment-considerations-using-bgp-ls">
-<section id="section-4">
+<section id="section-5">
       <h2 id="name-alto-deployment-considerati">
-<a href="#section-4" class="section-number selfRef">4. </a><a href="#name-alto-deployment-considerati" class="section-name selfRef">ALTO Deployment Considerations using BGP-LS</a>
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-alto-deployment-considerati" class="section-name selfRef">ALTO Deployment Considerations using BGP-LS</a>
       </h2>
-<p id="section-4-1">This section discusses some deployment considerations about how to address
+<p id="section-5-1">This section discusses some deployment considerations about how to address
 the basic requirements (Req 1-3) when satisfying the BGP-LS specific
-requirements (Req 4-5).<a href="#section-4-1" class="pilcrow">¶</a></p>
+requirements (Req 4-5).<a href="#section-5-1" class="pilcrow">¶</a></p>
 <div id="provisioning-of-topology-information">
-<section id="section-4.1">
+<section id="section-5.1">
         <h3 id="name-provisioning-of-topology-in">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-provisioning-of-topology-in" class="section-name selfRef">Provisioning of Topology Information</a>
+<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-provisioning-of-topology-in" class="section-name selfRef">Provisioning of Topology Information</a>
         </h3>
-<p id="section-4.1-1">As BGP-LS advertisement cannot be propagated to remote the remote ASes, each
-BGP speaker can only discover directly peered IGP topologies using BGP-LS.<a href="#section-4.1-1" class="pilcrow">¶</a></p>
-<p id="section-4.1-2">To satisfy Req 4, the ALTO server should only communicate to transit networks
+<p id="section-5.1-1">As BGP-LS advertisement cannot be propagated to remote the remote ASes, each
+BGP speaker can only discover directly peered IGP topologies using BGP-LS.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<p id="section-5.1-2">To satisfy Req 4, the ALTO server should only communicate to transit networks
 or IXPs using BGP-LS. As the IGP topology of a stub network can always be
 discovered by its peered transit networks or IXPs, so it is not necessary to
-communicate with the stub network.<a href="#section-4.1-2" class="pilcrow">¶</a></p>
-<p id="section-4.1-3">Specifically, the ALTO server should find a minimal BGP speaker set whose
-peered networks can cover all IGP domains.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
+communicate with the stub network.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<p id="section-5.1-3">Specifically, the ALTO server should find a minimal BGP speaker set whose
+peered networks can cover all IGP domains.<a href="#section-5.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="provisioning-of-routing-information">
-<section id="section-4.2">
+<section id="section-5.2">
         <h3 id="name-provisioning-of-routing-inf">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-provisioning-of-routing-inf" class="section-name selfRef">Provisioning of Routing Information</a>
+<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-provisioning-of-routing-inf" class="section-name selfRef">Provisioning of Routing Information</a>
         </h3>
-<p id="section-4.2-1">As BGP is a destination-based routing protocol, a stub network can receive
+<p id="section-5.2-1">As BGP is a destination-based routing protocol, a stub network can receive
 all the inter-domain routing information from all the reachable destinations
-via BGP.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
-<p id="section-4.2-2">Thus, to satisfy Req 4, the ALTO server should only communicate to stub networks
+via BGP.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<p id="section-5.2-2">Thus, to satisfy Req 4, the ALTO server should only communicate to stub networks
 using BGP, as the inter-domain routing information from the transit networks is
-not necessary.<a href="#section-4.2-2" class="pilcrow">¶</a></p>
-<p id="section-4.2-3">Assuming the ALTO server has already collected the complete topology
+not necessary.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+<p id="section-5.2-3">Assuming the ALTO server has already collected the complete topology
 information using BGP-LS, the ALTO server will have the LSDB of every IGP
-domain.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
-<p id="section-4.2-4">To satisfy Req 5, all the BGP sessions connected to the stub networks do not
-have to enable BGP-LS.<a href="#section-4.2-4" class="pilcrow">¶</a></p>
+domain.<a href="#section-5.2-3" class="pilcrow">¶</a></p>
+<p id="section-5.2-4">To satisfy Req 5, all the BGP sessions connected to the stub networks do not
+have to enable BGP-LS.<a href="#section-5.2-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="provisioning-of-performance-metric-information">
-<section id="section-4.3">
+<section id="section-5.3">
         <h3 id="name-provisioning-of-performance">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-provisioning-of-performance" class="section-name selfRef">Provisioning of Performance Metric Information</a>
+<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-provisioning-of-performance" class="section-name selfRef">Provisioning of Performance Metric Information</a>
         </h3>
-<p id="section-4.3-1">TBD.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-5.3-1">TBD.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
 </div>
 <div id="configuration-interfaces-of-map-calculation">
-<section id="section-5">
+<section id="section-6">
       <h2 id="name-configuration-interfaces-of">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-configuration-interfaces-of" class="section-name selfRef">Configuration Interfaces of Map Calculation</a>
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-configuration-interfaces-of" class="section-name selfRef">Configuration Interfaces of Map Calculation</a>
       </h2>
 <div id="configuration-interface-of-network-map-calculation">
-<section id="section-5.1">
+<section id="section-6.1">
         <h3 id="name-configuration-interface-of-">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-configuration-interface-of-" class="section-name selfRef">Configuration Interface of Network Map Calculation</a>
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-configuration-interface-of-" class="section-name selfRef">Configuration Interface of Network Map Calculation</a>
         </h3>
-<div class="artwork art-text alignLeft" id="section-5.1-1">
+<div class="alignLeft art-text artwork" id="section-6.1-1">
 <pre>
 rw network-map-config* [resource-id]
 +--rw resource-id      alto-types:resource-id
@@ -1275,23 +1536,23 @@ rw network-map-config* [resource-id]
    +--:(first-hop-cluster)
       +--rw first-hop-cluster-algorithm
          +--rw inspect-igp     boolean
-</pre><a href="#section-5.1-1" class="pilcrow">¶</a>
+</pre><a href="#section-6.1-1" class="pilcrow">¶</a>
 </div>
-<p id="section-5.1-2">To generate a network map, one or more BGP RIBs that could provide the
+<p id="section-6.1-2">To generate a network map, one or more BGP RIBs that could provide the
 topology information MUST specified. Each BGP RIB MAY include a pre-computed
-topology from the RIB, and an option indicating if the BPG-LS is enabled.<a href="#section-5.1-2" class="pilcrow">¶</a></p>
-<p id="section-5.1-3">The <code>inspect-igp</code> option in the <code>first-hop-cluster-algorithm</code> field indicates
+topology from the RIB, and an option indicating if the BPG-LS is enabled.<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<p id="section-6.1-3">The <code>inspect-igp</code> option in the <code>first-hop-cluster-algorithm</code> field indicates
 if the ALTO server exposes information about the IGP topologies. If it is
 true, the ALTO server will inspect all the IGP topolgies from the BGP RIBs
-that enalbe BGP-LS (whose <code>bgp-ls</code> option is true).<a href="#section-5.1-3" class="pilcrow">¶</a></p>
+that enalbe BGP-LS (whose <code>bgp-ls</code> option is true).<a href="#section-6.1-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="configuration-interface-of-cost-map-calculation">
-<section id="section-5.2">
+<section id="section-6.2">
         <h3 id="name-configuration-interface-of-c">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-configuration-interface-of-c" class="section-name selfRef">Configuration Interface of Cost Map Calculation</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-configuration-interface-of-c" class="section-name selfRef">Configuration Interface of Cost Map Calculation</a>
         </h3>
-<div class="artwork art-text alignLeft" id="section-5.2-1">
+<div class="alignLeft art-text artwork" id="section-6.2-1">
 <pre>
 rw cost-map-config* [resource-id]
 +--rw resource-id              alto-types:resource-id
@@ -1308,22 +1569,22 @@ rw cost-map-config* [resource-id]
    +rw cost-mode                    alto-types:cost-mode
    +rw cost-metric                  alto-types:cost-metric
    +rw (params)?
-</pre><a href="#section-5.2-1" class="pilcrow">¶</a>
+</pre><a href="#section-6.2-1" class="pilcrow">¶</a>
 </div>
-<p id="section-5.2-2">To generate a cost map, besides the dependent network map, one or more
+<p id="section-6.2-2">To generate a cost map, besides the dependent network map, one or more
 alternative BGP RIBs could be specified to provide necessary routing
-information to the ALTO server.<a href="#section-5.2-2" class="pilcrow">¶</a></p>
+information to the ALTO server.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="configuration-examples">
-<section id="section-5.3">
+<section id="section-6.3">
         <h3 id="name-configuration-examples">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-configuration-examples" class="section-name selfRef">Configuration Examples</a>
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-configuration-examples" class="section-name selfRef">Configuration Examples</a>
         </h3>
-<p id="section-5.3-1">Example Network<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<p id="section-6.3-1">Example Network<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 <div id="fig-example-network">
 <figure id="figure-2">
-          <div class="artwork art-text alignLeft" id="section-5.3-2.1">
+          <div class="alignLeft art-text artwork" id="section-6.3-2.1">
 <pre>
 .----------------------------.                    .------------.
 | 1.1.1.0/24    6.6.6.0/24   |                    | 8.8.8.0/24 |
@@ -1349,24 +1610,18 @@ information to the ALTO server.<a href="#section-5.2-2" class="pilcrow">¶</a></
                     .         +--------+----+
                     +- - - - -+ ALTO Server |
                               +-------------+
+
+R2 - R3: BGP-LS
+R4 - R3: BGP-LS
+R7 - R3: BGP-LS
+R3 - ALTO: BGP-LS
+R4 - ALTO: BGP
 </pre>
 </div>
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a></figcaption></figure>
 </div>
-<ul>
-<li id="section-5.3-3.1">R2 - R3: BGP-LS<a href="#section-5.3-3.1" class="pilcrow">¶</a>
-</li>
-<li id="section-5.3-3.2">R4 - R3: BGP-LS<a href="#section-5.3-3.2" class="pilcrow">¶</a>
-</li>
-<li id="section-5.3-3.3">R7 - R3: BGP-LS<a href="#section-5.3-3.3" class="pilcrow">¶</a>
-</li>
-<li id="section-5.3-3.4">R3 - ALTO: BGP-LS<a href="#section-5.3-3.4" class="pilcrow">¶</a>
-</li>
-<li id="section-5.3-3.5">R4 - ALTO: BGP<a href="#section-5.3-3.5" class="pilcrow">¶</a>
-</li>
-</ul>
-<p id="section-5.3-4">Config a network map:<a href="#section-5.3-4" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-5.3-5">
+<p id="section-6.3-3">Config a network map:<a href="#section-6.3-3" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.3-4">
 <pre>
 POST /restconf/config/alto-maps/network-map-config/bgp-networkmap
 HOST: alto-config.example.com
@@ -1389,10 +1644,10 @@ Content-Length: TBD
     }
   }
 }
-</pre><a href="#section-5.3-5" class="pilcrow">¶</a>
+</pre><a href="#section-6.3-4" class="pilcrow">¶</a>
 </div>
-<p id="section-5.3-6">Test to fetch the network map:<a href="#section-5.3-6" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-5.3-7">
+<p id="section-6.3-5">Test to fetch the network map:<a href="#section-6.3-5" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.3-6">
 <pre>
 GET /alto/networkmap/example
 HOST: alto.example.com
@@ -1428,10 +1683,10 @@ Content-Type: application/alto-networkmap+json
     }
   }
 }
-</pre><a href="#section-5.3-7" class="pilcrow">¶</a>
+</pre><a href="#section-6.3-6" class="pilcrow">¶</a>
 </div>
-<p id="section-5.3-8">Config a cost map:<a href="#section-5.3-8" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-5.3-9">
+<p id="section-6.3-7">Config a cost map:<a href="#section-6.3-7" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.3-8">
 <pre>
 POST /restconf/config/alto-maps/cost-map-config/bgp-costmap
 HOST: alto-config.example.com
@@ -1458,10 +1713,10 @@ Content-Length: TBD
     ]
   }
 }
-</pre><a href="#section-5.3-9" class="pilcrow">¶</a>
+</pre><a href="#section-6.3-8" class="pilcrow">¶</a>
 </div>
-<p id="section-5.3-10">Test to fetch the cost map:<a href="#section-5.3-10" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-5.3-11">
+<p id="section-6.3-9">Test to fetch the cost map:<a href="#section-6.3-9" class="pilcrow">¶</a></p>
+<div class="alignLeft art-text artwork" id="section-6.3-10">
 <pre>
 GET /alto/costmap/bgp-costmap
 HOST: alto.example.com
@@ -1510,97 +1765,113 @@ Content-Type: application/alto-costmap+json
     }
   }
 }
-</pre><a href="#section-5.3-11" class="pilcrow">¶</a>
+</pre><a href="#section-6.3-10" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 </section>
 </div>
 <div id="test-scenarios">
-<section id="section-6">
+<section id="section-7">
       <h2 id="name-test-scenarios">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-test-scenarios" class="section-name selfRef">Test Scenarios</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-test-scenarios" class="section-name selfRef">Test Scenarios</a>
       </h2>
 <div id="test-environment-setup">
-<section id="section-6.1">
+<section id="section-7.1">
         <h3 id="name-test-environment-setup">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-test-environment-setup" class="section-name selfRef">Test Environment Setup</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-test-environment-setup" class="section-name selfRef">Test Environment Setup</a>
       </h3>
 </section>
 </div>
 <div id="test-approach">
-<section id="section-6.2">
+<section id="section-7.2">
         <h3 id="name-test-approach">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-test-approach" class="section-name selfRef">Test Approach</a>
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-test-approach" class="section-name selfRef">Test Approach</a>
       </h3>
 </section>
 </div>
 <div id="test-results">
-<section id="section-6.3">
+<section id="section-7.3">
         <h3 id="name-test-results">
-<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-test-results" class="section-name selfRef">Test Results</a>
+<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-test-results" class="section-name selfRef">Test Results</a>
       </h3>
 </section>
 </div>
 </section>
 </div>
-<section id="section-7">
+<section id="section-8">
       <h2 id="name-references">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-references" class="section-name selfRef">References</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
-<section id="section-7.1">
+<section id="section-8.1">
         <h3 id="name-normative-references">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
         </h3>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-<dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc2119">https://www.rfc-editor.org/rfc/rfc2119</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC4271">[RFC4271]</dt>
-<dd>
-<span class="refAuthor">Rekhter, Y., Ed.</span><span class="refAuthor">, Li, T., Ed.</span><span class="refAuthor">, and S. Hares, Ed.</span>, <span class="refTitle">"A Border Gateway Protocol 4 (BGP-4)"</span>, <span class="seriesInfo">RFC 4271</span>, <span class="seriesInfo">DOI 10.17487/RFC4271</span>, <time datetime="2006-01">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc4271">https://www.rfc-editor.org/info/rfc4271</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Rekhter, Y., Ed.</span>, <span class="refAuthor">Li, T., Ed.</span>, and <span class="refAuthor">S. Hares, Ed.</span>, <span class="refTitle">"A Border Gateway Protocol 4 (BGP-4)"</span>, <span class="seriesInfo">RFC 4271</span>, <span class="seriesInfo">DOI 10.17487/RFC4271</span>, <time datetime="2006-01" class="refDate">January 2006</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc4271">https://www.rfc-editor.org/rfc/rfc4271</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7285">[RFC7285]</dt>
-<dd>
-<span class="refAuthor">Alimi, R., Ed.</span><span class="refAuthor">, Penno, R., Ed.</span><span class="refAuthor">, Yang, Y., Ed.</span><span class="refAuthor">, Kiesel, S.</span><span class="refAuthor">, Previdi, S.</span><span class="refAuthor">, Roome, W.</span><span class="refAuthor">, Shalunov, S.</span><span class="refAuthor">, and R. Woundy</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Protocol"</span>, <span class="seriesInfo">RFC 7285</span>, <span class="seriesInfo">DOI 10.17487/RFC7285</span>, <time datetime="2014-09">September 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7285">https://www.rfc-editor.org/info/rfc7285</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Alimi, R., Ed.</span>, <span class="refAuthor">Penno, R., Ed.</span>, <span class="refAuthor">Yang, Y., Ed.</span>, <span class="refAuthor">Kiesel, S.</span>, <span class="refAuthor">Previdi, S.</span>, <span class="refAuthor">Roome, W.</span>, <span class="refAuthor">Shalunov, S.</span>, and <span class="refAuthor">R. Woundy</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Protocol"</span>, <span class="seriesInfo">RFC 7285</span>, <span class="seriesInfo">DOI 10.17487/RFC7285</span>, <time datetime="2014-09" class="refDate">September 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7285">https://www.rfc-editor.org/rfc/rfc7285</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7752">[RFC7752]</dt>
-<dd>
-<span class="refAuthor">Gredler, H., Ed.</span><span class="refAuthor">, Medved, J.</span><span class="refAuthor">, Previdi, S.</span><span class="refAuthor">, Farrel, A.</span><span class="refAuthor">, and S. Ray</span>, <span class="refTitle">"North-Bound Distribution of Link-State and Traffic Engineering (TE) Information Using BGP"</span>, <span class="seriesInfo">RFC 7752</span>, <span class="seriesInfo">DOI 10.17487/RFC7752</span>, <time datetime="2016-03">March 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7752">https://www.rfc-editor.org/info/rfc7752</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Gredler, H., Ed.</span>, <span class="refAuthor">Medved, J.</span>, <span class="refAuthor">Previdi, S.</span>, <span class="refAuthor">Farrel, A.</span>, and <span class="refAuthor">S. Ray</span>, <span class="refTitle">"North-Bound Distribution of Link-State and Traffic Engineering (TE) Information Using BGP"</span>, <span class="seriesInfo">RFC 7752</span>, <span class="seriesInfo">DOI 10.17487/RFC7752</span>, <time datetime="2016-03" class="refDate">March 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7752">https://www.rfc-editor.org/rfc/rfc7752</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC7971">[RFC7971]</dt>
-<dd>
-<span class="refAuthor">Stiemerling, M.</span><span class="refAuthor">, Kiesel, S.</span><span class="refAuthor">, Scharf, M.</span><span class="refAuthor">, Seidel, H.</span><span class="refAuthor">, and S. Previdi</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Deployment Considerations"</span>, <span class="seriesInfo">RFC 7971</span>, <span class="seriesInfo">DOI 10.17487/RFC7971</span>, <time datetime="2016-10">October 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7971">https://www.rfc-editor.org/info/rfc7971</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Stiemerling, M.</span>, <span class="refAuthor">Kiesel, S.</span>, <span class="refAuthor">Scharf, M.</span>, <span class="refAuthor">Seidel, H.</span>, and <span class="refAuthor">S. Previdi</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Deployment Considerations"</span>, <span class="seriesInfo">RFC 7971</span>, <span class="seriesInfo">DOI 10.17487/RFC7971</span>, <time datetime="2016-10" class="refDate">October 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc7971">https://www.rfc-editor.org/rfc/rfc7971</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="RFC8174">[RFC8174]</dt>
+        <dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8174">https://www.rfc-editor.org/rfc/rfc8174</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8571">[RFC8571]</dt>
-<dd>
-<span class="refAuthor">Ginsberg, L., Ed.</span><span class="refAuthor">, Previdi, S.</span><span class="refAuthor">, Wu, Q.</span><span class="refAuthor">, Tantsura, J.</span><span class="refAuthor">, and C. Filsfils</span>, <span class="refTitle">"BGP - Link State (BGP-LS) Advertisement of IGP Traffic Engineering Performance Metric Extensions"</span>, <span class="seriesInfo">RFC 8571</span>, <span class="seriesInfo">DOI 10.17487/RFC8571</span>, <time datetime="2019-03">March 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8571">https://www.rfc-editor.org/info/rfc8571</a>&gt;</span>. </dd>
+      <dd>
+<span class="refAuthor">Ginsberg, L., Ed.</span>, <span class="refAuthor">Previdi, S.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Tantsura, J.</span>, and <span class="refAuthor">C. Filsfils</span>, <span class="refTitle">"BGP - Link State (BGP-LS) Advertisement of IGP Traffic Engineering Performance Metric Extensions"</span>, <span class="seriesInfo">RFC 8571</span>, <span class="seriesInfo">DOI 10.17487/RFC8571</span>, <time datetime="2019-03" class="refDate">March 2019</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8571">https://www.rfc-editor.org/rfc/rfc8571</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 </dl>
 </section>
-<section id="section-7.2">
+<section id="section-8.2">
         <h3 id="name-informative-references">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
         </h3>
 <dl class="references">
 <dt id="I-D.ietf-alto-cost-calendar">[I-D.ietf-alto-cost-calendar]</dt>
-<dd>
-<span class="refAuthor">Randriamasy, S.</span><span class="refAuthor">, Yang, Y.</span><span class="refAuthor">, WU, Q.</span><span class="refAuthor">, Lingli, D.</span><span class="refAuthor">, and N. Schwan</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Cost Calendar"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-cost-calendar-19</span>, <time datetime="2020-03-02">2 March 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-alto-cost-calendar-19.txt">http://www.ietf.org/internet-drafts/draft-ietf-alto-cost-calendar-19.txt</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Randriamasy, S.</span>, <span class="refAuthor">Yang, Y. R.</span>, <span class="refAuthor">Wu, Q.</span>, <span class="refAuthor">Lingli, D.</span>, and <span class="refAuthor">N. Schwan</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Cost Calendar"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-cost-calendar-21</span>, <time datetime="2020-03-17" class="refDate">17 March 2020</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-alto-cost-calendar-21">https://datatracker.ietf.org/doc/html/draft-ietf-alto-cost-calendar-21</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-alto-incr-update-sse">[I-D.ietf-alto-incr-update-sse]</dt>
-<dd>
-<span class="refAuthor">Roome, W.</span><span class="refAuthor"> and Y. Yang</span>, <span class="refTitle">"ALTO Incremental Updates Using Server-Sent Events (SSE)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-incr-update-sse-20</span>, <time datetime="2020-02-20">20 February 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-alto-incr-update-sse-20.txt">http://www.ietf.org/internet-drafts/draft-ietf-alto-incr-update-sse-20.txt</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Roome, W.</span> and <span class="refAuthor">Y. R. Yang</span>, <span class="refTitle">"Application-Layer Traffic Optimization (ALTO) Incremental Updates Using Server-Sent Events (SSE)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-incr-update-sse-22</span>, <time datetime="2020-03-20" class="refDate">20 March 2020</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-alto-incr-update-sse-22">https://datatracker.ietf.org/doc/html/draft-ietf-alto-incr-update-sse-22</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-alto-path-vector">[I-D.ietf-alto-path-vector]</dt>
-<dd>
-<span class="refAuthor">Gao, K.</span><span class="refAuthor">, Lee, Y.</span><span class="refAuthor">, Randriamasy, S.</span><span class="refAuthor">, Yang, Y.</span><span class="refAuthor">, and J. Zhang</span>, <span class="refTitle">"ALTO Extension: Path Vector"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-path-vector-09</span>, <time datetime="2019-11-03">3 November 2019</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-alto-path-vector-09.txt">http://www.ietf.org/internet-drafts/draft-ietf-alto-path-vector-09.txt</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Gao, K.</span>, <span class="refAuthor">Lee, Y.</span>, <span class="refAuthor">Randriamasy, S.</span>, <span class="refAuthor">Yang, Y. R.</span>, and <span class="refAuthor">J. Zhang</span>, <span class="refTitle">"An Extension for Application-Layer Traffic Optimization (ALTO): Path Vector"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-path-vector-25</span>, <time datetime="2022-03-20" class="refDate">20 March 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-alto-path-vector-25">https://datatracker.ietf.org/doc/html/draft-ietf-alto-path-vector-25</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.ietf-alto-unified-props-new">[I-D.ietf-alto-unified-props-new]</dt>
-<dd>
-<span class="refAuthor">Roome, W.</span><span class="refAuthor">, Randriamasy, S.</span><span class="refAuthor">, Yang, Y.</span><span class="refAuthor">, Zhang, J.</span><span class="refAuthor">, and K. Gao</span>, <span class="refTitle">"Unified Properties for the ALTO Protocol"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-unified-props-new-10</span>, <time datetime="2019-11-04">4 November 2019</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-alto-unified-props-new-10.txt">http://www.ietf.org/internet-drafts/draft-ietf-alto-unified-props-new-10.txt</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Roome, W.</span>, <span class="refAuthor">Randriamasy, S.</span>, <span class="refAuthor">Yang, Y. R.</span>, <span class="refAuthor">Zhang, J.</span>, and <span class="refAuthor">K. Gao</span>, <span class="refTitle">"An Extension for Application-Layer Traffic Optimization (ALTO): Entity Property Maps"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-alto-unified-props-new-24</span>, <time datetime="2022-02-28" class="refDate">28 February 2022</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-alto-unified-props-new-24">https://datatracker.ietf.org/doc/html/draft-ietf-alto-unified-props-new-24</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="I-D.wang-idr-bgpls-inter-as-topology-ext">[I-D.wang-idr-bgpls-inter-as-topology-ext]</dt>
-<dd>
-<span class="refAuthor">Wang, A.</span><span class="refAuthor"> and H. Chen</span>, <span class="refTitle">"BGP-LS Extension for Inter-AS Topology Retrieval"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wang-idr-bgpls-inter-as-topology-ext-02</span>, <time datetime="2018-08-13">13 August 2018</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-wang-idr-bgpls-inter-as-topology-ext-02.txt">http://www.ietf.org/internet-drafts/draft-wang-idr-bgpls-inter-as-topology-ext-02.txt</a>&gt;</span>. </dd>
+        <dd>
+<span class="refAuthor">Wang, A.</span> and <span class="refAuthor">H. Chen</span>, <span class="refTitle">"BGP-LS Extension for Inter-AS Topology Retrieval"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-wang-idr-bgpls-inter-as-topology-ext-02</span>, <time datetime="2018-08-13" class="refDate">13 August 2018</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-wang-idr-bgpls-inter-as-topology-ext-02">https://datatracker.ietf.org/doc/html/draft-wang-idr-bgpls-inter-as-topology-ext-02</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 <dt id="RFC8189">[RFC8189]</dt>
-<dd>
-<span class="refAuthor">Randriamasy, S.</span><span class="refAuthor">, Roome, W.</span><span class="refAuthor">, and N. Schwan</span>, <span class="refTitle">"Multi-Cost Application-Layer Traffic Optimization (ALTO)"</span>, <span class="seriesInfo">RFC 8189</span>, <span class="seriesInfo">DOI 10.17487/RFC8189</span>, <time datetime="2017-10">October 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8189">https://www.rfc-editor.org/info/rfc8189</a>&gt;</span>. </dd>
+      <dd>
+<span class="refAuthor">Randriamasy, S.</span>, <span class="refAuthor">Roome, W.</span>, and <span class="refAuthor">N. Schwan</span>, <span class="refTitle">"Multi-Cost Application-Layer Traffic Optimization (ALTO)"</span>, <span class="seriesInfo">RFC 8189</span>, <span class="seriesInfo">DOI 10.17487/RFC8189</span>, <time datetime="2017-10" class="refDate">October 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/rfc/rfc8189">https://www.rfc-editor.org/rfc/rfc8189</a>&gt;</span>. </dd>
+<dd class="break"></dd>
 </dl>
 </section>
 </section>
 <div id="authors-addresses">
-<section id="section-appendix.a">
+<section id="appendix-A">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>
@@ -1678,45 +1949,13 @@ Content-Type: application/alto-costmap+json
 </address>
 </section>
 </div>
-<script>var toc = document.getElementById("toc");
-var tocToggle = toc.querySelector("h2");
-var tocNav = toc.querySelector("nav");
-
-// mobile menu toggle
-tocToggle.onclick = function(event) {
-    if (window.innerWidth < 1024) {
- var tocNavDisplay = tocNav.currentStyle ? tocNav.currentStyle.display : getComputedStyle(tocNav, null).display;
- if (tocNavDisplay == "none") {
-     tocNav.style.display = "block";
- } else {
-     tocNav.style.display = "none";
- }
-    }
-}
-
-// toc anchor scroll to anchor
-tocNav.addEventListener("click", function (event) {
-    event.preventDefault();
-    if (event.target.nodeName == 'A') {
- if (window.innerWidth < 1024) {
-     tocNav.style.display = "none";
- }
- var href = event.target.getAttribute("href");
- var anchorId = href.substr(1);
- var anchor =  document.getElementById(anchorId);
- anchor.scrollIntoView(true);
- window.history.pushState("","",href);
-    }
+<script>const toc = document.getElementById("toc");
+toc.querySelector("h2").addEventListener("click", e => {
+  toc.classList.toggle("active");
 });
-
-// switch toc mode when window resized
-window.onresize = function () {
-    if (window.innerWidth < 1024) {
- tocNav.style.display = "none";
-    } else {
- tocNav.style.display = "block";
-    }
-}
+toc.querySelector("nav").addEventListener("click", e => {
+  toc.classList.remove("active");
+});
 </script>
 </body>
 </html>
