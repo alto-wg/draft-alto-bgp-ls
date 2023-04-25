@@ -86,6 +86,7 @@ normative:
   RFC7285:
   RFC7752:
   RFC7971:
+  RFC8174:
   RFC8571:
 informative:
   RFC8189:
