@@ -6,12 +6,12 @@ requirements (Req 4-5).
 
 ## Provisioning of Topology Information
 
-As BGP-LS advertisement cannot be propagated to remote the remote ASes, each
+As BGP-LS advertisements cannot be propagated to remote ASes, each
 BGP speaker can only discover directly peered IGP topologies using BGP-LS.
 
 To satisfy Req 4, the ALTO server should only communicate to transit networks
 or IXPs using BGP-LS. As the IGP topology of a stub network can always be
-discovered by its peered transit networks or IXPs, so it is not necessary to
+discovered by its peered transit networks or IXPs, it is not necessary to
 communicate with the stub network.
 
 Specifically, the ALTO server should find a minimal BGP speaker set whose
@@ -21,17 +21,13 @@ peered networks can cover all IGP domains.
 
 As BGP is a destination-based routing protocol, a stub network can receive
 all the inter-domain routing information from all the reachable destinations
-via BGP.
-
-Thus, to satisfy Req 4, the ALTO server should only communicate to stub networks
+via BGP. Thus, to satisfy Req 4, the ALTO server should only communicate to stub networks
 using BGP, as the inter-domain routing information from the transit networks is
 not necessary.
 
 Assuming the ALTO server has already collected the complete topology
 information using BGP-LS, the ALTO server will have the LSDB of every IGP
-domain.
-
-To satisfy Req 5, all the BGP sessions connected to the stub networks do not
+domain. To satisfy Req 5, all the BGP sessions connected to the stub networks do not
 have to enable BGP-LS.
 
 ## Provisioning of Performance Metric Information
@@ -60,13 +56,13 @@ rw network-map-config* [resource-id]
 ~~~
 
 To generate a network map, one or more BGP RIBs that could provide the
-topology information MUST specified. Each BGP RIB MAY include a pre-computed
+topology information MUST be specified. Each BGP RIB MAY include a pre-computed
 topology from the RIB, and an option indicating if the BPG-LS is enabled.
 
 The `inspect-igp` option in the `first-hop-cluster-algorithm` field indicates
 if the ALTO server exposes information about the IGP topologies. If it is
-true, the ALTO server will inspect all the IGP topolgies from the BGP RIBs
-that enalbe BGP-LS (whose `bgp-ls` option is true).
+true, the ALTO server will inspect all the IGP topologies from the BGP RIBs
+that enable BGP-LS (i.e., whose `bgp-ls` option is true).
 
 ## Configuration Interface of Cost Map Calculation
 
@@ -94,7 +90,7 @@ information to the ALTO server.
 
 ## Configuration Examples
 
-Example Network
+Example Network:
 
 ~~~
 .----------------------------.                    .------------.
