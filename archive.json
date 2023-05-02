@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-04-30T01:14:46.954377+00:00",
+  "timestamp": "2023-05-02T01:10:24.762444+00:00",
   "repo": "alto-wg/draft-alto-bgp-ls",
   "labels": [
     {
@@ -67,5 +67,32 @@
       "comments": []
     }
   ],
-  "pulls": []
+  "pulls": [
+    {
+      "number": 2,
+      "id": "PR_kwDODogc4s5PiOUk",
+      "title": "Draft proofreading",
+      "url": "https://github.com/alto-wg/draft-alto-bgp-ls/pull/2",
+      "state": "OPEN",
+      "author": "quicjros",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Simple suggestions/updates to the draft.",
+      "createdAt": "2023-05-01T21:31:11Z",
+      "updatedAt": "2023-05-01T21:31:11Z",
+      "baseRepository": "alto-wg/draft-alto-bgp-ls",
+      "baseRefName": "master",
+      "baseRefOid": "9f410302550198dee6f29f3ddee4e91a8aac5454",
+      "headRepository": "quicjros/draft-alto-bgp-ls",
+      "headRefName": "jrg",
+      "headRefOid": "7fcc7b97cdd3bfa5053526f0aa90b6ec5983ab0e",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
+    }
+  ]
 }
