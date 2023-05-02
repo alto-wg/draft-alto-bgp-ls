@@ -5,7 +5,7 @@
 ALTO WG                                                         J. Zhang
 Internet-Draft                                         Tongji University
 Intended status: Informational                                    K. Gao
-Expires: 27 October 2023                              Sichuan University
+Expires: 3 November 2023                              Sichuan University
                                                             LM Contreras
                                                               Telefonica
                                                             A. Escribano
@@ -14,7 +14,7 @@ Expires: 27 October 2023                              Sichuan University
                                                               UST Global
                                                                  F. Cano
                                                               Telefonica
-                                                           25 April 2023
+                                                              2 May 2023
 
 
     Considerations of Deploying ALTO using BGP - Link State (BGP-LS)
@@ -52,7 +52,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 27 October 2023.
+   This Internet-Draft will expire on 3 November 2023.
 
 Copyright Notice
 
@@ -99,46 +99,40 @@ Table of Contents
 
 1.  Introduction
 
-   The major component of the Application-Layer Traffic Optimization
+   A major component of the Application-Layer Traffic Optimization
    (ALTO) [RFC7285] deployment is the network information collection.
-   [RFC7971] discussed multiple options to collect the network
-   information from the inter-domain networks.
+   [RFC7971] discusses multiple options to collect the network
+   information from the inter-domain networks.  To collect the related
+   network information for ALTO, the following high-level questions
+   should be considered:
 
-   To collection the related network information for ALTO, the following
-   high-level questions should be considered:
+   *  Can the ALTO service realistically discover such information?
 
-   *  Can the ALTO service realistically discover that information?
+   *  Is the exposure of such information allowed by the operators of
+      that service?
 
-   *  Is the distribution of that information allowed by the operators
-      of that service?
-
-   *  Is it information that a client cannot find easily some other way?
+   *  Does it provide information that a client cannot find easily by
+      using some other way?
 
    The Border Gateway Protocol - Link State (BGP-LS) extension [RFC7752]
    is one of the popular options and has been deployed in many
    Autonomous Systems (ASes) in recent years [TODO: Need some
-   reference].
+   reference].  BGP-LS enables ALTO servers to provide underlay inter-
+   domain topology information using the link-state information in IGP
+   domains.
 
-   BGP-LS enables ALTO server to provide underlay inter-domain topology
-   information using the link-state information in IGP domains.
-
-   To leverage BGP-LS to generate ALTO information effectively, some
-   requirements for deployment should be considered.
-
-   This document discusses these requirements and the corresponding
-   deployment considerations.
-
-   Additionally, this document describes some inter-domain scenarios to
-   test the deployment.
+   To leverage BGP-LS and generate ALTO information effectively, some
+   requirements for deployment should be considered.  This document
+   discusses these requirements and the corresponding deployment
+   considerations.  Additionally, this document describes some inter-
+   domain scenarios to test the deployment.
 
 2.  New Problem Statement and Working Items
 
    This document was initially written to summarize ALTO deployment
-   consideration using BGP-LS.  However, authors are finding new
+   consideration using BGP-LS.  However, the authors are finding new
    interesting practical problems when pushing the deployment to large-
-   scale ISP networks.
-
-   Authors identify two problems:
+   scale ISP networks.  In particular, two problems are found:
 
    Problem 1: how to efficiently obtain fine-grained global ALTO
    information from multiple networks?
@@ -148,13 +142,13 @@ Table of Contents
 
    Considering the scale of the ISP carrier networks and the frequency
    of network dynamicity, the previous design cannot survive.  We have
-   to target a systemtic design to support (1) distributed information
+   to target a systematic design to support (1) distributed information
    collection, and (2) calculation and incremental information
    recomputation.
 
-   Thus, authors propose a hierarchical architecture to deploy ALTO
+   Thus, the authors propose a hierarchical architecture to deploy ALTO
    servers.  To make the deployment in different small networks
-   compatible with each other, the interfaces to allow interoperations
+   compatible with each other, the interfaces to allow operations
    between different ALTO servers are required.  Although we can design
    and implement those interfaces outside the scope of ALTO, we believe
    making ALTO provide this capability by itself can be a more coherent
@@ -171,10 +165,8 @@ Table of Contents
 
    [RFC7971] discusses considerations of ALTO deployment in different
    network scenarios.  The inter-domain network is the most common
-   scenario to deploy ALTO.
-
-   In practice, the following approaches are used to collect information
-   from the network:
+   scenario to deploy ALTO.  In practice, the following approaches are
+   used to collect information from the network:
 
    *  Interior Gateway Protocols (IGPs, e.g., OSPF, IS-IS): intra-domain
       topology, link weights
@@ -189,22 +181,20 @@ Table of Contents
 
    BGP-LS [RFC7752] is designed to allow a BGP speaker to advertise the
    link state database (LSDB) or traffic engineering database (TED) of
-   its connected IGP area.
-
-   BGP-LS defines a new address family, link state, in the BGPv4
-   framework [RFC4271].
-
-   Using BGP-LS, the ALTO server can communicate to only BGP speakers to
-   collect all those information.
+   its connected IGP area.  BGP-LS defines a new address family, link
+   state, in the BGPv4 framework [RFC4271].  Using BGP-LS, the ALTO
+   server can communicate to only BGP speakers to collect all those
+   information.
 
 3.3.  ALTO Deployment Problem using BGP-LS
 
    A simple deployment solution is to connect the ALTO server as a BGP
-   reflector client of every BGP speakers in the network.  However, this
-   solution is expensive and redundant.  And because of the BGP updates,
-   the ALTO server could receive a lot of inconsistent redundant
-   informaiton.  To avoid the redundancy and inconsistency of the
-   collected information, a deployment solution should be minimal.
+   reflector client of every BGP speaker in the network.  However, this
+   solution is expensive and redundant.  Further, because of the
+   asynchronous nature of BGP updates, the ALTO server could receive
+   redundant and inconsistent information.  To avoid the redundancy and
+   inconsistency of the collected information, a deployment solution
+   should be minimal.
 
    To understand what is a minimal solution to deploy ALTO using BGP-LS,
    the following questions are raised:
@@ -218,15 +208,13 @@ Table of Contents
    *  If using BGP-LS, can the number of necessary BGP sessions be
       reduced?
 
-   The following example shows a minimal deployment in a simple example
-   topology.
-
-   Consider the following AS-level topology as an example.  Assuming all
-   the BGP sessions between ASes have enabled BGP-LS, the BGP speaker on
-   AS B can received the IGP topologies from all the three ASes.  Thus,
-   to make sure the ALTO server collect all the inter-domain and intra-
-   domain topology information, the minimal deployment could be to set
-   up the the ALTO server as a BGP reflector of the BGP speaker on AS B.
+   As an example of minimal deployment, consider the following AS-level
+   topology.  Assuming all the BGP sessions between ASes have enabled
+   BGP-LS, the BGP speaker on AS B can received the IGP topologies from
+   all the three ASes.  Thus, to make sure the ALTO server collect all
+   the inter-domain and intra-domain topology information, the minimal
+   deployment could be to set up the the ALTO server as a BGP reflector
+   of the BGP speaker on AS B.
 
    +--------+   +--------+   +---------+
    | AS A   |---| AS B   |---| AS C    |
@@ -241,14 +229,12 @@ Table of Contents
                     Figure 1: Example AS-level Topology
 
    However, it is not enough for collecting the routing information.  As
-   the BGP is a destination-based routing protocol, AS B could not
-   receive the routing information between endpoints from AS A and AS C.
-   To get the missing routing information, the ALTO server should also
-   connect read the BGP RIB of AS A or AS C at least.
-
-   As the result, the minimal solution is to establish a BGP session to
-   AS B with BGP-LS and another BGP session to AS A (or AS C) without
-   BGP-LS.
+   BGP is a destination-based routing protocol, AS B could not receive
+   the routing information between endpoints from AS A and AS C.  To get
+   the missing routing information, the ALTO server should also read the
+   BGP RIB of AS A or AS C at least.  As theA result, the minimal
+   solution is to establish a BGP session to AS B with BGP-LS and
+   another BGP session to AS A (or AS C) without BGP-LS.
 
    The following part of this document will discuss how to achieve the
    minimal ALTO deployment using BPG-LS in detail.  Specifically, two
@@ -264,14 +250,14 @@ Table of Contents
 
 4.1.  Basic Requirements
 
-   The following basic requirements are required by ALTO inter-domain
-   deployment in any case.
+   The following basic requirements are required by an ALTO inter-domain
+   deployment:
 
    Req 1: The ALTO server MUST be able to collect topology information
    from multiple IGP areas.
 
    Req 2: The ALTO server MUST be able to collect routing information
-   for any pairs of endpoints.
+   for any pair of endpoints.
 
    Req 3: The ALTO server MUST be able to collect performance metrics
    across routes.
@@ -281,7 +267,7 @@ Table of Contents
    The following additional requirements are required by ALTO deployment
    when using BGP-LS.
 
-   Req 4: The ALTO server SHOULD only communicate with necessary BGP
+   Req 4: The ALTO server SHOULD only communicate with the necessary BGP
    speakers.
 
    Req 5: The ALTO server SHOULD only enable BGP-LS advertisement in
@@ -295,14 +281,14 @@ Table of Contents
 
 5.1.  Provisioning of Topology Information
 
-   As BGP-LS advertisement cannot be propagated to remote the remote
-   ASes, each BGP speaker can only discover directly peered IGP
-   topologies using BGP-LS.
+   As BGP-LS advertisements cannot be propagated to remote ASes, each
+   BGP speaker can only discover directly peered IGP topologies using
+   BGP-LS.
 
    To satisfy Req 4, the ALTO server should only communicate to transit
    networks or IXPs using BGP-LS.  As the IGP topology of a stub network
-   can always be discovered by its peered transit networks or IXPs, so
-   it is not necessary to communicate with the stub network.
+   can always be discovered by its peered transit networks or IXPs, it
+   is not necessary to communicate with the stub network.
 
    Specifically, the ALTO server should find a minimal BGP speaker set
    whose peered networks can cover all IGP domains.
@@ -311,18 +297,15 @@ Table of Contents
 
    As BGP is a destination-based routing protocol, a stub network can
    receive all the inter-domain routing information from all the
-   reachable destinations via BGP.
-
-   Thus, to satisfy Req 4, the ALTO server should only communicate to
-   stub networks using BGP, as the inter-domain routing information from
-   the transit networks is not necessary.
+   reachable destinations via BGP.  Thus, to satisfy Req 4, the ALTO
+   server should only communicate to stub networks using BGP, as the
+   inter-domain routing information from the transit networks is not
+   necessary.
 
    Assuming the ALTO server has already collected the complete topology
    information using BGP-LS, the ALTO server will have the LSDB of every
-   IGP domain.
-
-   To satisfy Req 5, all the BGP sessions connected to the stub networks
-   do not have to enable BGP-LS.
+   IGP domain.  To satisfy Req 5, all the BGP sessions connected to the
+   stub networks do not have to enable BGP-LS.
 
 5.3.  Provisioning of Performance Metric Information
 
@@ -348,15 +331,15 @@ Table of Contents
             +--rw inspect-igp     boolean
 
    To generate a network map, one or more BGP RIBs that could provide
-   the topology information MUST specified.  Each BGP RIB MAY include a
-   pre-computed topology from the RIB, and an option indicating if the
+   the topology information MUST be specified.  Each BGP RIB MAY include
+   a pre-computed topology from the RIB, and an option indicating if the
    BPG-LS is enabled.
 
    The inspect-igp option in the first-hop-cluster-algorithm field
    indicates if the ALTO server exposes information about the IGP
    topologies.  If it is true, the ALTO server will inspect all the IGP
-   topolgies from the BGP RIBs that enalbe BGP-LS (whose bgp-ls option
-   is true).
+   topologies from the BGP RIBs that enable BGP-LS (i.e., whose bgp-ls
+   option is true).
 
 6.2.  Configuration Interface of Cost Map Calculation
 
@@ -382,7 +365,7 @@ Table of Contents
 
 6.3.  Configuration Examples
 
-   Example Network
+   Example Network:
 
    .----------------------------.                    .------------.
    | 1.1.1.0/24    6.6.6.0/24   |                    | 8.8.8.0/24 |
